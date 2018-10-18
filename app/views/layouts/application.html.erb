@@ -10,6 +10,19 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <aside>
+        <p><%= link_to 'Manage Account', edit_user_registration_path %></p>
+        <p><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></p>
+      </aside>
+    <% else %>
+      <aside>
+        <p><%= link_to 'Sign In', user_session_path %></p>
+        <p><%= link_to 'Sign Up', new_user_registration_path %></p>
+      </aside>
+    <% end %>
     <%= yield %>
   </body>
 </html>
