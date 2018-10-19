@@ -1,6 +1,9 @@
 class GroupsController < ApplicationController
   def index
     @groups = Group.all
+    return unless user_signed_in?
+    @group_id_memberships = {}
+    current_user.memberships.each { |m| @group_id_memberships[m.group_id] = m }
   end
 
   def new
@@ -10,6 +13,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
+      @group.create_new_member(current_user)
       redirect_to group_path(@group), notice: 'New Group Created'
     else
       flash[:alert] = @group.errors.full_messages.to_sentence
@@ -33,6 +37,9 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @memberships = @group.memberships
+    @id_users = {}
+    User.find(@memberships.pluck(:user_id)).each { |u| @id_users[u.id] = u }
   end
 
   private
