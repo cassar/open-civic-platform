@@ -1,21 +1,17 @@
-<h1>Groups Index</h1>
-<% if user_signed_in? %>
-  <%= link_to 'New Group', new_group_path %>
+<h1>Your Groups</h1>
+<%= link_to 'New Group', new_group_path %>
+<% if @groups.present? %>
   <% @groups.each do |group| %>
     <h2><%= group.name %></h2>
     <% membership = @group_id_memberships[group.id] %>
-    <% if membership.nil? %>
-      <p><%= link_to 'Request to Join Group', memberships_path(group_id: group.id), method: :post %></p>
-    <% elsif membership.invitee? %>
+    <% if membership.invitee? %>
       <p><%= link_to 'Accept Invitation to Group', membership_path(membership), method: :patch %></p>
       <p><%= link_to 'Decline Invitation to Group', membership_path(membership), data: { confirm: "Are you sure?" }, method: :delete %></p>
-    <% elsif membership.requester? %>
-      <p>Membership Request still Pending.</p>
-      <p><%= link_to 'Withdraw Request', membership_path(membership), data: { confirm: "Are you sure?" }, method: :delete %></p>
     <% elsif membership.member? %>
       <p><%= link_to 'Go to Group', group_path(group) %></p>
+      <p><%= link_to 'Leave Group', membership_path(membership), data: { confirm: "Are you sure you want to leave this group?" }, method: :delete %></p>
     <% end %>
   <% end %>
 <% else %>
-  <p>Sign in to create and join groups.</p>
+  <p>You are not a member of any groups, create one above.</p>
 <% end %>

@@ -4,18 +4,15 @@ class Membership < ApplicationRecord
 
   MEMBER = 'Member'.freeze
   INVITEE = 'Invitee'.freeze
-  REQUESTER = 'Requester'.freeze
 
-  STATUS_TYPES = [MEMBER, INVITEE, REQUESTER].freeze
+  STATUS_TYPES = [MEMBER, INVITEE].freeze
 
   validates :status, inclusion: { in: STATUS_TYPES }
 
   validates :group_id, uniqueness: { scope: :user_id,
                                      message: 'Membership already exists.' }
 
-  def self.new_requester
-    new(status: REQUESTER)
-  end
+  after_destroy :could_the_last_one_out_please_shut_the_door
 
   def self.new_member
     new(status: MEMBER)
@@ -33,7 +30,8 @@ class Membership < ApplicationRecord
     status == INVITEE
   end
 
-  def requester?
-    status == REQUESTER
+  def could_the_last_one_out_please_shut_the_door
+    return unless group.memberships.empty?
+    group.destroy
   end
 end

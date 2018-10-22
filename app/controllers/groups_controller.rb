@@ -1,9 +1,11 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @groups = Group.all
-    return unless user_signed_in?
+    memberships = current_user.memberships
+    @groups = Group.where(id: memberships.pluck(:group_id))
     @group_id_memberships = {}
-    current_user.memberships.each { |m| @group_id_memberships[m.group_id] = m }
+    memberships.each { |m| @group_id_memberships[m.group_id] = m }
   end
 
   def new
