@@ -1,11 +1,11 @@
 class Group < ApplicationRecord
   has_many :memberships, dependent: :destroy
-  validates :name, presence: true
+  has_many :profiles, through: :memberships
 
-  def create_new_member(user)
-    member = Membership.new_member
-    member.user = user
-    member.group = self
-    member.save
-  end
+  has_many :confirmed_memberships, -> { confirmed }, class_name: 'Membership'
+  has_many :confirmed_profiles, through: :confirmed_memberships, source: :profile
+
+  has_many :invitations, -> { invited }, class_name: 'Membership'
+
+  validates :name, presence: true
 end
