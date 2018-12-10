@@ -1,0 +1,17 @@
+%h1 Your Groups
+%p= link_to 'New Group', new_group_path
+- if @memberships.present? || @invitations.present?
+  - if @memberships.present?
+    %h2 Memberships
+    - @memberships.each do |membership|
+      %h3= membership.group.name
+      %p= link_to 'Go to Group', group_path(membership.group)
+      %p= link_to 'Leave Group', membership_path(membership), data: { confirm: "Are you sure you want to leave this group?" }, method: :delete
+  - if @invitations.present?
+    %h2 Invitations
+    - @invitations.each do |invitation|
+      %h3= invitation.group.name
+      %p= link_to 'Accept Invitation', invitation_path(invitation), method: :patch
+      %p= link_to 'Decline Invitation', invitation_path(invitation), data: { confirm: "Are you sure?" }, method: :delete
+- else
+  %p You are not a member of any groups, create one above

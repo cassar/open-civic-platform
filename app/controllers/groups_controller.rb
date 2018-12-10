@@ -1,11 +1,15 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!, only: %i[edit update show]
 
   def index
-    memberships = current_user.memberships
-    @groups = Group.where(id: memberships.pluck(:group_id))
-    @group_id_memberships = {}
-    memberships.each { |m| @group_id_memberships[m.group_id] = m }
+    @memberships = current_user.confirmed_memberships.preload(:group)
+    @invitations = current_user.invitations.preload(:group)
+  end
+
+  def show
+    @memberships = @group.confirmed_memberships.preload(:profile)
+    @invitations = @group.invitations.preload(:profile)
   end
 
   def new
@@ -13,9 +17,8 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
-    if @group.save
-      @group.create_new_member(current_user)
+    @group = current_user.profile.groups.create group_params
+    if @group.persisted?
       redirect_to group_path(@group), notice: 'New Group Created'
     else
       flash[:alert] = @group.errors.full_messages.to_sentence
@@ -23,12 +26,9 @@ class GroupsController < ApplicationController
     end
   end
 
-  def edit
-    @group = Group.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @group = Group.find(params[:id])
     if @group.update(group_params)
       redirect_to group_path(@group), notice: 'New Group Updated'
     else
@@ -37,16 +37,24 @@ class GroupsController < ApplicationController
     end
   end
 
-  def show
-    @group = Group.find(params[:id])
-    @memberships = @group.memberships
-    @id_users = {}
-    User.find(@memberships.pluck(:user_id)).each { |u| @id_users[u.id] = u }
-  end
-
   private
 
   def group_params
     params.require(:group).permit(:name)
+  end
+
+  def authorize_user!
+    @group = retrieve_group
+    return if @group.confirmed_profiles.include? current_user.profile
+
+    redirect_to root_path, alert: 'Not able to interact with this group.'
+  end
+
+  def retrieve_group
+    if params[:id].present?
+      Group.find(params[:id])
+    else
+      Group.find(params[:group_id])
+    end
   end
 end

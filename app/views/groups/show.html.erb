@@ -1,9 +1,0 @@
-<h1><%= @group.name %></h1>
-
-<p><%= link_to 'Edit', edit_group_path(@group) %></p>
-<h2>Members</h2>
-<% @memberships.each do |membership| %>
-  <% user = @id_users[membership.user_id] %>
-  <p><%= user.email %></p>
-<% end %>
-<p><%= link_to 'Back', :back %></p>

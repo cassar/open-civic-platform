@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :groups, :memberships
+  resources :memberships, only: :destroy
+  resources :invitations, only: [:update, :destroy]
+
+  resources :groups, except: :destroy do
+    resources :invitations, only: [:new, :create], controller: 'groups/invitations'
+  end
 
   root 'groups#index'
 end
