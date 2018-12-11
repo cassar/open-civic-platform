@@ -1,0 +1,23 @@
+%h1= "Invite New Member to #{@group.name}"
+= form_tag new_group_invitation_path(@group), method: :get do
+  = text_field_tag :term, params[:term]
+  = submit_tag 'Search'
+- if @profile.present?
+  %h2= @profile.name
+  - if @membership.present?
+    - if @membership.invited?
+      %p Has already been invited.
+    - elsif @membership.confirmed?
+      %p= "#{@profile.name} is already a group member."
+  - else
+    %p= "#{@profile.name} is not currently a member."
+    %p= link_to 'Invite', group_invitations_path(@group, membership: {profile_id: @profile.id}), method: :post
+- elsif @profiles.present?
+  - @profiles.each do |profile|
+    %h2= profile.name
+    %p= link_to 'Select', new_group_invitation_path(@group, profile_id: profile.id)
+- elsif params[:term].present?
+  %p= "No results found matching the term '#{params[:term]}'."
+- else
+  %p Please enter a name or email to invite to the group.
+%p= link_to 'Back to Group', group_path(@group)

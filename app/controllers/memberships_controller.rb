@@ -1,36 +1,24 @@
 class MembershipsController < ApplicationController
   before_action :authenticate_user!
-
-  def update
-    @membership = Membership.find(params[:id])
-    if @membership.invitee? && @membership.user_id == current_user.id
-      @membership.accept_invitation
-      redirect_to group_path(@membership.group_id), notice: 'Group Joined'
-    else
-      flash[:alert] = 'Cannot Update Membership'
-      redirect_to root_path
-    end
-  end
+  before_action :authorize_user!
 
   def destroy
-    @membership = Membership.find(params[:id])
-    if @membership.user_id == current_user.id
-      @membership.destroy
-      flash[:notice] = destroy_notice_message
+    if @membership.destroy
+      flash[:notice] = 'Left group'
       redirect_to groups_path
     else
-      flash[:alert] = 'Cannot Destroy Membership'
+      flash[:alert] = 'Cannot leave group'
       redirect_to root_path
     end
   end
 
   private
 
-  def destroy_notice_message
-    if @membership.invitee?
-      'Invitation Declined'
-    else
-      'Left Group'
-    end
+  def authorize_user!
+    @membership = Membership.find(params[:id])
+    return if current_user.profile.id == @membership.profile_id
+    return if @membership.confirmed?
+
+    redirect_to root_path, alert: 'Not able to modify this membership.'
   end
 end
