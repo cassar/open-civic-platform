@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   def show
     @memberships = @group.confirmed_memberships.preload(:profile)
     @invitations = @group.invitations.preload(:profile)
+    @issues = @group.issues
   end
 
   def new
@@ -51,10 +52,10 @@ class GroupsController < ApplicationController
   end
 
   def retrieve_group
-    if params[:id].present?
-      Group.find(params[:id])
-    else
+    if params[:group_id].present?
       Group.find(params[:group_id])
+    else
+      Group.find(params[:id])
     end
   end
 end

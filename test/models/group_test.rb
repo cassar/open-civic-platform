@@ -5,6 +5,7 @@ class GroupTest < ActiveSupport::TestCase
     @group = Group.first
     @membership = Membership.first
     @profile = Profile.first
+    @issue = Issue.first
     @confirmed_membership = @membership
     @confirmed_profile = @profile
     @invitation = Membership.second
@@ -13,11 +14,13 @@ class GroupTest < ActiveSupport::TestCase
   test 'group associations' do
     assert @group.memberships.include? @membership
     assert @group.profiles.include? @profile
+    assert @group.issues.include? @issue
     assert @group.confirmed_memberships.include? @confirmed_membership
     assert @group.confirmed_profiles.include? @confirmed_profile
     assert @group.invitations.include? @invitation
     @group.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @membership.reload }
+    assert_raises(ActiveRecord::RecordNotFound) { @issue.reload }
   end
 
   test 'group validations' do

@@ -20,11 +20,15 @@ end
 adjectives = ['Tame', 'Big', 'Loud', 'Poor', 'Vibrant', 'Stoic']
 nouns = ['Golfers', 'Readers', 'Livers', 'People', 'Nobodies']
 
-50.times do |number|
+25.times do |number|
   adjective = adjectives.sample
   noun = nouns.sample
   group = Group.create(name: "#{adjective} #{noun} #{number}")
   Profile.all.take(10).each do |profile|
     group.memberships.create(profile: profile, status: ['Member', 'Invitee'].sample)
+  end
+
+  3.times do |issue_number|
+    group.issues.create(name: "Issue #{issue_number}")
   end
 end

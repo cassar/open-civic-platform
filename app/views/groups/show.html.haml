@@ -1,5 +1,9 @@
 %h1= @group.name
 %p= link_to 'Edit', edit_group_path(@group)
+%h2 Issues
+- @issues.each do |issue|
+  %h3= issue.name
+  %p= link_to 'Go to Issue', group_issue_path(@group, issue)
 %h2 Members
 - @memberships.each do |membership|
   %p= membership.profile.name
