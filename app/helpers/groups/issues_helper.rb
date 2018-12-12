@@ -1,0 +1,2 @@
+module Groups::IssuesHelper
+end

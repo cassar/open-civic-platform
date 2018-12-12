@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :groups, except: :destroy do
     resources :invitations, only: [:new, :create], controller: 'groups/invitations'
+    resources :issues, only: :show, controller: 'groups/issues'
   end
 
   root 'groups#index'
