@@ -4,6 +4,7 @@
 - @issues.each do |issue|
   %h3= issue.name
   %p= link_to 'Go to Issue', group_issue_path(@group, issue)
+%p= link_to 'Create New Issue', new_group_issue_path(@group)
 %h2 Members
 - @memberships.each do |membership|
   %p= membership.profile.name
