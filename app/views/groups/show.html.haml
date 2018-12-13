@@ -9,7 +9,7 @@
 - @memberships.each do |membership|
   %p= membership.profile.name
 - if @invitations.present?
-  %h2 Invited Members
+  %h3 Invitations
   - @invitations.each do |invitation|
     %p= invitation.profile.name
 %p= link_to 'Invite New Member', new_group_invitation_path(@group)
