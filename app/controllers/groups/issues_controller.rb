@@ -4,6 +4,7 @@ class Groups::IssuesController < GroupsController
 
   def show
     @issue = Issue.find(params[:id])
+    @positions = @issue.positions
   end
 
   def new

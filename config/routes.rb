@@ -10,5 +10,9 @@ Rails.application.routes.draw do
     resources :issues, only: [:show, :new, :create], controller: 'groups/issues'
   end
 
+  resources :issues do
+    resources :positions, only: [:new, :create], controller: 'issues/positions'
+  end
+
   root 'groups#index'
 end

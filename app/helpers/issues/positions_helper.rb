@@ -1,0 +1,2 @@
+module Issues::PositionsHelper
+end
