@@ -5,10 +5,12 @@ class PositionTest < ActiveSupport::TestCase
     @position = Position.first
     @issue = Issue.first
     @support = Support.first
+    @group = Group.first
   end
 
   test 'position associations' do
     assert @position.issue == @issue
+    assert @position.group == @group
     assert @position.supports.include? @support
     @position.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @support.reload }
