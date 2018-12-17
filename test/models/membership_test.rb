@@ -7,11 +7,15 @@ class MembershipTest < ActiveSupport::TestCase
     @group = Group.first
     @confirmed = @membership
     @invited = Membership.second
+    @support = Support.first
+    @issue = Issue.first
   end
 
   test 'membership associations' do
     assert @membership.profile == @profile
     assert @membership.group == @group
+    assert @membership.supports.include? @support
+    assert @membership.issues_engaged.include? @issue
     assert Membership.confirmed.include? @confirmed
     assert Membership.invited.include? @invited
   end
