@@ -7,7 +7,7 @@ class Membership < ApplicationRecord
   belongs_to :profile
   belongs_to :group
 
-  has_many :supports
+  has_many :supports, dependent: :destroy
   has_many :issues_engaged, through: :supports, source: :issue
 
   scope :confirmed, -> { where(status: MEMBER) }
