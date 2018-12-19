@@ -1,0 +1,2 @@
+module Positions::SupportsHelper
+end

@@ -14,5 +14,9 @@ Rails.application.routes.draw do
     resources :positions, only: [:new, :create], controller: 'issues/positions'
   end
 
+  resources :positions, only: [] do
+    resources :supports, only: [:create, :destroy, :update], controller: 'positions/supports'
+  end
+
   root 'groups#index'
 end
