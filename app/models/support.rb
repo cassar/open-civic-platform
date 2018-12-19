@@ -9,6 +9,9 @@ class Support < ApplicationRecord
   private
 
   def only_one_support_per_issue
-    errors.add(:membership, 'Can only support one position per issue.') if membership.issues_engaged.include? issue
+    support = issue.supports.find_by(membership: membership)
+    return unless support.present? && support != self
+
+    errors.add(:membership, 'Can only support one position per issue.')
   end
 end
