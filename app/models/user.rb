@@ -10,4 +10,12 @@ class User < ApplicationRecord
   has_many :groups, through: :memberships
   has_many :confirmed_memberships, through: :profile
   has_many :invitations, through: :profile
+
+  after_create :link_to_profile
+
+  private
+
+  def link_to_profile
+    Profile.create(userable: self)
+  end
 end

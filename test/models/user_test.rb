@@ -19,4 +19,11 @@ class UserTest < ActiveSupport::TestCase
     @user.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @profile.reload }
   end
+
+  test 'after create new profile' do
+    User.destroy_all
+    assert_difference('Profile.count') do
+      User.create(email: 'test@email.com', password: 'password', password_confirmation: 'password')
+    end
+  end
 end

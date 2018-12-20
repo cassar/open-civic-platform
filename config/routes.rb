@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :memberships, only: :destroy
   resources :invitations, only: [:update, :destroy]
+  resources :profiles, only: [:edit, :update]
 
   resources :groups, except: :destroy do
     resources :invitations, only: [:new, :create], controller: 'groups/invitations'
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   resources :positions, only: [] do
     resources :supports, only: [:create, :destroy, :update], controller: 'positions/supports'
   end
+
+  get 'complete_profile', to: 'profiles#edit'
 
   root 'groups#index'
 end

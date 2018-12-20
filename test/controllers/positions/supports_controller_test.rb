@@ -6,9 +6,11 @@ class Positions::SupportsControllerTest < ActionDispatch::IntegrationTest
     @support = Support.first
     @group = Group.first
     @issue = Issue.first
+    sign_in users(:one)
   end
 
   test 'should post create' do
+    @support.destroy
     assert_difference('Support.count') do
       post position_supports_url(@position)
     end

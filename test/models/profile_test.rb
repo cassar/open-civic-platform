@@ -23,8 +23,4 @@ class ProfileTest < ActiveSupport::TestCase
     @profile.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @membership.reload }
   end
-
-  test 'profile validations' do
-    assert_not @profile.update name: nil
-  end
 end
