@@ -80,6 +80,6 @@ test:
 
 production:
   <<: *default
-  database: open_civic_platform_production
-  username: open_civic_platform
-  password: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
