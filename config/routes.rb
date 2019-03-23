@@ -21,5 +21,5 @@ Rails.application.routes.draw do
 
   get 'complete_profile', to: 'profiles#edit'
 
-  root 'groups#index'
+  root 'static_pages#coming_soon'
 end
