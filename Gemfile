@@ -31,6 +31,10 @@ gem 'hamlit'
 gem 'spectator-validates_email', :require => 'validates_email'
 # Pretend Data
 gem 'faker'
+# Bootstrap 4 ruby gem for Ruby on Rails (Sprockets)
+gem 'bootstrap', '~> 4.3.1'
+# A gem to automate using jQuery with Rails
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

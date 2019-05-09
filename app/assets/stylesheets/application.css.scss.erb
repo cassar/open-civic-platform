@@ -10,13 +10,16 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
- @font-face {
-   font-family: 'Orbitron';
-   src:font-url('Orbitron-Regular.ttf') format('truetype');
-   font-weight: normal;
-   font-style: normal;
- }
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+@import 'static_pages';
+
+@font-face {
+ font-family: 'Orbitron';
+ src:font-url('Orbitron-Regular.ttf') format('truetype');
+ font-weight: normal;
+ font-style: normal;
+}
