@@ -1,0 +1,14 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Open Civic Platform
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = render 'application/favicon'
+  %body
+    %p.notice= notice
+    %p.alert= alert
+    = render 'layouts/authentication_links' unless current_page?(root_path)
+    = yield

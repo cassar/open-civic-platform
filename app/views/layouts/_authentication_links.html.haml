@@ -1,0 +1,8 @@
+%aside
+  %p= link_to 'Home', root_path
+  - if user_signed_in?
+    %p= link_to 'Manage Account', edit_user_registration_path
+    %p= link_to 'Sign Out', destroy_user_session_path, method: :delete
+  - else
+    %p= link_to 'Sign In', user_session_path
+    %p= link_to 'Sign Up', new_user_registration_path
