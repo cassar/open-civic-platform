@@ -37,13 +37,14 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV['DOMAIN'], port: 3000 }
 
-  ActionMailer::Base.smtp_settings = {
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
-    :domain => ENV['DOMAIN'],
-    :address => 'smtp.sendgrid.net',
+  config.action_mailer.asset_host = "http://#{ENV['DOMAIN']}:3000"
+
+  config.action_mailer.smtp_settings = {
+    :address => ENV['AWS_SES_SERVER'],
     :port => 587,
-    :authentication => :plain,
+    :user_name => ENV['AWS_SES_ID'],
+    :password => ENV['AWS_SES_KEY'],
+    :authentication => :login,
     :enable_starttls_auto => true
   }
 
