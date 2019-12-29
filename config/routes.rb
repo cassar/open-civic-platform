@@ -27,5 +27,5 @@ Rails.application.routes.draw do
 
   get 'complete_profile', to: 'profiles#edit'
 
-  root 'static_pages#coming_soon'
+  root 'static_pages#landing_page'
 end

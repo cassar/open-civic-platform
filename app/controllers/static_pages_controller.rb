@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  def coming_soon
+  def landing_page
     return unless user_signed_in?
 
     redirect_to groups_path
