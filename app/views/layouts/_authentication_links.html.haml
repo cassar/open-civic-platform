@@ -2,7 +2,7 @@
   = link_to 'Home', root_path, class: 'navbar-brand'
   - if user_signed_in?
     = link_to 'Manage Account', account_path, class: 'nav-item nav-link'
-    = link_to 'Sign Out', sign_out_path, method: :delete, class: 'nav-item nav-link'
+    = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-item nav-link'
   - else
     = link_to 'Sign In', sign_in_path, class: 'nav-item nav-link'
     = link_to 'Sign Up', sign_up_path, class: 'nav-item nav-link'
