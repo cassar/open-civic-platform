@@ -8,9 +8,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @memberships = @group.confirmed_memberships.preload(:profile)
-    @invitations = @group.invitations.preload(:profile)
-    @issues = @group.issues
+    @memberships = group.confirmed_memberships.preload(:profile)
+    @invitations = group.invitations.preload(:profile)
+    @issues = group.issues
   end
 
   def new
@@ -30,10 +30,10 @@ class GroupsController < ApplicationController
   def edit; end
 
   def update
-    if @group.update(group_params)
-      redirect_to group_path(@group), notice: 'New Group Updated'
+    if group.update(group_params)
+      redirect_to group_path(group), notice: 'New Group Updated'
     else
-      flash[:alert] = @group.errors.full_messages.to_sentence
+      flash[:alert] = group.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -45,17 +45,12 @@ class GroupsController < ApplicationController
   end
 
   def authorize_user!
-    @group = retrieve_group
-    return if @group.confirmed_profiles.include? current_user.profile
+    return if group.confirmed_profiles.include? current_user.profile
 
     redirect_to root_path, alert: 'Not able to interact with this group.'
   end
 
-  def retrieve_group
-    if params[:group_id].present?
-      Group.find(params[:group_id])
-    else
-      Group.find(params[:id])
-    end
+  def group
+    @group ||= Group.find(params[:group_id] || params[:id])
   end
 end
