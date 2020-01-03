@@ -8,13 +8,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = render 'application/favicon'
   %body
+    %p
+      %span.notice= notice
+      %span.alert= alert
     - if current_page?(root_path)
-      %p.notice= notice
-      %p.alert= alert
       = yield
     - else
       .container
-        %p.notice= notice
-        %p.alert= alert
         = render 'layouts/authentication_links'
         = yield
