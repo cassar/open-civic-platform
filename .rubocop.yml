@@ -11,6 +11,7 @@ AllCops:
     - 'Rakefile'
     - 'bin/*'
     - 'db/**/*'
+    - 'node_modules/node-sass/src/**/*'
 
 Style/Documentation:
   Enabled: false
