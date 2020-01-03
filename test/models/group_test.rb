@@ -9,6 +9,7 @@ class GroupTest < ActiveSupport::TestCase
     @confirmed_membership = @membership
     @confirmed_profile = @profile
     @invitation = Membership.second
+    @invited_profile = @invitation.profile
   end
 
   test 'group associations' do
@@ -18,6 +19,7 @@ class GroupTest < ActiveSupport::TestCase
     assert @group.confirmed_memberships.include? @confirmed_membership
     assert @group.confirmed_profiles.include? @confirmed_profile
     assert @group.invitations.include? @invitation
+    assert @group.invited_profiles.include? @invited_profile
     @group.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @membership.reload }
     assert_raises(ActiveRecord::RecordNotFound) { @issue.reload }
