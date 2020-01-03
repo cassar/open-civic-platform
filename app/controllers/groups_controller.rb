@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_user!, only: %i[edit update show]
+  before_action :authorize_user!, only: %i[edit update]
+  before_action :authorize_user_show!, only: :show
 
   def index
     @memberships = current_user.confirmed_memberships.preload(:group)
@@ -47,6 +48,18 @@ class GroupsController < ApplicationController
   def authorize_user!
     return if group.confirmed_profiles.include? current_user.profile
 
+    redirect_failed_authorization
+  end
+
+  def authorize_user_show!
+    return if (
+      group.confirmed_profiles | group.invited_profiles
+    ).include? current_user.profile
+
+    redirect_failed_authorization
+  end
+
+  def redirect_failed_authorization
     redirect_to root_path, alert: 'Not able to interact with this group.'
   end
 
