@@ -17,7 +17,7 @@
       %p= "#{@profile.name} is not currently a member."
       %p= link_to 'Invite', group_invitations_path(@group, membership: {profile_id: @profile.id}), method: :post
   - elsif @profiles.present?
-    %div.tile-container
+    .tile-container
       - @profiles.each do |profile|
         = link_to new_group_invitation_path(@group, profile_id: profile.id), class: 'tile' do
           %p= profile.name

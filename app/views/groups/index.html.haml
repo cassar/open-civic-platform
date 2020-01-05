@@ -6,13 +6,13 @@
   %p= link_to 'New Group', new_group_path
   - if @memberships.present? || @invitations.present?
     - if @memberships.present?
-      %div.tile-container
+      .tile-container
         - @memberships.each do |membership|
           = link_to group_path(membership.group), class: 'tile' do
             %p= membership.group.name
     - if @invitations.present?
       %h2 Invitations
-      %div.tile-container
+      .tile-container
         - @invitations.each do |invitation|
           = link_to group_path(invitation.group), class: 'tile' do
             %p= invitation.group.name
