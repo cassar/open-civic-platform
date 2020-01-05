@@ -1,8 +1,12 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  = link_to 'Home', root_path, class: 'navbar-brand'
-  - if user_signed_in?
-    = link_to 'Manage Account', account_path, class: 'nav-item nav-link'
-    = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-item nav-link'
-  - else
-    = link_to 'Sign In', sign_in_path, class: 'nav-item nav-link'
-    = link_to 'Sign Up', sign_up_path, class: 'nav-item nav-link'
+%nav.navbar.sticky-top.navbar-light.bg-light
+  = link_to 'Open Civic Platform', root_path, class: 'navbar-brand'
+  %ul.navbar-nav
+    - if user_signed_in?
+      %li.nav-item
+        = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
+    - else
+      %li.nav-item
+        - if params['controller'] == 'devise/sessions'
+          = link_to 'Sign Up', sign_up_path, class: 'nav-link'
+        - else
+          = link_to 'Sign In', sign_in_path, class: 'nav-link'
