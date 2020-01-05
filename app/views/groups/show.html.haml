@@ -4,18 +4,22 @@
   %p= link_to 'Edit', edit_group_path(@group)
   %h2 Issues
   %p= link_to 'Create New Issue', new_group_issue_path(@group)
-  %div.tile-container
+  .tile-container
     - @issues.each do |issue|
       = link_to group_issue_path(@group, issue), class: 'tile' do
         %p= issue.name
   %h2 Members
-  - @memberships.each do |membership|
-    %p= membership.profile.name
+  .tile-container
+    - @memberships.each do |membership|
+      .tile
+        %p= membership.profile.name
   %h3 Invitations
   %p= link_to 'Invite New Member', new_group_invitation_path(@group)
   - if @invitations.present?
-    - @invitations.each do |invitation|
-      %p= invitation.profile.name
+    .tile-container
+      - @invitations.each do |invitation|
+        .tile
+          %p= invitation.profile.name
   - else
     %p There are no invitations pending for this group
   = link_to 'Back to Groups', groups_path
