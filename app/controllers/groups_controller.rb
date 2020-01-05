@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   before_action :authorize_user_show!, only: :show
 
   def index
+    @profile = current_user.profile
     @memberships = current_user.confirmed_memberships.preload(:group)
     @invitations = current_user.invitations.preload(:group)
   end

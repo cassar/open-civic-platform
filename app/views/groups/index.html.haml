@@ -1,6 +1,8 @@
-- content_for :title, 'Your Groups'
-%h1= yield :title
+- content_for :title, 'Home'
+%h1= @profile.name
 %section
+  %p= link_to 'Manage Account', account_path
+  %h2 Groups
   %p= link_to 'New Group', new_group_path
   - if @memberships.present? || @invitations.present?
     - if @memberships.present?
