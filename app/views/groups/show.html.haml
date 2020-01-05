@@ -1,16 +1,21 @@
-%h1= @group.name
-%p= link_to 'Edit', edit_group_path(@group)
-%h2 Issues
-- @issues.each do |issue|
-  %h3= issue.name
-  %p= link_to 'Go to Issue', group_issue_path(@group, issue)
-%p= link_to 'Create New Issue', new_group_issue_path(@group)
-%h2 Members
-- @memberships.each do |membership|
-  %p= membership.profile.name
-- if @invitations.present?
+- content_for :title, @group.name
+%h1= yield :title
+%section
+  %p= link_to 'Edit', edit_group_path(@group)
+  %h2 Issues
+  %p= link_to 'Create New Issue', new_group_issue_path(@group)
+  %div.tile-container
+    - @issues.each do |issue|
+      = link_to group_issue_path(@group, issue), class: 'tile' do
+        %p= issue.name
+  %h2 Members
+  - @memberships.each do |membership|
+    %p= membership.profile.name
   %h3 Invitations
-  - @invitations.each do |invitation|
-    %p= invitation.profile.name
-%p= link_to 'Invite New Member', new_group_invitation_path(@group)
-%p= link_to 'Back to All Groups', groups_path
+  %p= link_to 'Invite New Member', new_group_invitation_path(@group)
+  - if @invitations.present?
+    - @invitations.each do |invitation|
+      %p= invitation.profile.name
+  - else
+    %p There are no invitations pending for this group
+  = link_to 'Back to Groups', groups_path

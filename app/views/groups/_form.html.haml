@@ -1,4 +1,6 @@
 = form_for @group do |f|
-  %p= f.label :name
-  %p= f.text_field :name
-  = f.submit
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .actions.form-group
+    = f.submit nil, class: 'btn btn-primary'

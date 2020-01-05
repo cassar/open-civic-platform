@@ -1,8 +1,13 @@
-%h1= "New Position on Issue: #{@issue.name}"
-= form_for [@issue, @position] do |f|
-  %p= f.label :name
-  %p= f.text_field :name
-  %p= f.label :outline
-  %p= f.text_area :outline
-  = f.submit
-= link_to 'Back to Group', group_issue_path(@group, @issue)
+- content_for :title, "New Position on #{@issue.name}"
+%h1= yield :title
+%section
+  = form_for [@issue, @position] do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label :outline
+      = f.text_area :outline, class: 'form-control'
+    .actions.form-group
+      = f.submit nil, class: 'btn btn-primary'
+  = link_to 'Back to Issue', group_issue_path(@group, @issue)
