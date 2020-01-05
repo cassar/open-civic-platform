@@ -6,7 +6,7 @@ require 'faker'
 admin = User.create(email: ENV['SEED_EMAIL'],
             password: 'password', password_confirmation: 'password')
 
-Profile.create(userable: admin, name: ENV['SEED_NAME'])
+admin.profile.update! name: ENV['SEED_NAME']
 
 first_names = ['Tim', 'Kate', 'Watson', 'Zhang', 'Maria', 'Omar', 'Ezara']
 last_names = ['Kumar', 'Huang', 'Zammit', 'Tyrel', 'Conner', 'Drizen']
@@ -16,7 +16,7 @@ last_names = ['Kumar', 'Huang', 'Zammit', 'Tyrel', 'Conner', 'Drizen']
   last_name = last_names.sample
   user = User.create(email: "#{first_name}_#{last_name}#{number}@example.com",
     password: Devise.friendly_token[0, 20])
-  Profile.create(userable: user, name: "#{first_name} #{last_name}")
+  user.profile.update! name: "#{first_name} #{last_name}"
 end
 
 adjectives = ['Tame', 'Big', 'Loud', 'Poor', 'Vibrant', 'Stoic']
