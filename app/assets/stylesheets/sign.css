@@ -14,6 +14,7 @@
   .landing-links {
     font-size: 10vw;
     line-height: 2;
+    margin-top: 6vh;
   }
 
   .landing-links:link, .landing-links:visited, .landing-links:hover, .landing-links:active {
