@@ -13,6 +13,11 @@ class Issues::PositionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should get show' do
+    get issue_position_url(@issue, @position)
+    assert_response :success
+  end
+
   test 'should post create' do
     assert_difference('Position.count') do
       post issue_positions_url(@issue), params: { position: { name: 'New Position' } }

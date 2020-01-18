@@ -3,17 +3,10 @@
 %section
   %p= link_to 'Create New Position', new_issue_position_path(@issue)
   - if @positions.present?
-    - @positions.each do |position|
-      %h2= position.name
-      %p= position.outline
-      %p= "#{pluralize position.supports.length, 'member supports', 'members support'} this position"
-      - if @support.present?
-        - if @support.position_id == position.id
-          %p= link_to 'Withdraw Support', position_support_path(position, @support), method: :delete
-        - else
-          %p= link_to 'Shift Support', position_support_path(position, @support), method: :patch
-      - else
-        %p= link_to 'Support Position', position_supports_path(position), method: :post
+    .tile-container
+      - @positions.each do |position|
+        = link_to issue_position_path(@issue, position), class: 'tile' do
+          = position.name
   - else
     %p This issue does not have any positions declared.
   = link_to 'Back to Group', group_path(@group)

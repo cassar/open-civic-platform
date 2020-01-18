@@ -5,7 +5,6 @@ class Groups::IssuesController < GroupsController
   def show
     @issue = Issue.find(params[:id])
     @positions = @issue.positions.preload(:supports)
-    @support = Support.find_by(position: @positions, membership: current_user.memberships)
   end
 
   def new

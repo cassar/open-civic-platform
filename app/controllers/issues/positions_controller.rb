@@ -6,6 +6,11 @@ class Issues::PositionsController < ApplicationController
     @position = @issue.positions.new
   end
 
+  def show
+    @position = Position.find params[:id]
+    @support = Support.find_by(position: @positions, membership: current_user.memberships)
+  end
+
   def create
     @position = @issue.positions.new(position_params)
     if @position.save

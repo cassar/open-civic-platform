@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :issues do
-    resources :positions, only: [:new, :create], controller: 'issues/positions'
+    resources :positions, only: [:new, :create, :show], controller: 'issues/positions'
   end
 
   resources :positions, only: [] do
