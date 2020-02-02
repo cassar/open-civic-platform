@@ -8,7 +8,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = render 'application/favicon'
   %body
-    %p
+    .flashes
       %span.notice= notice
       %span.alert= alert
     - if current_page?(root_path)
