@@ -1,23 +1,19 @@
 class InvitationsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_user!
+  before_action :authenticate_user!, :authorize_user!
 
   def update
     if @invitation.accept_invitation
       redirect_to group_path(@invitation.group_id), notice: 'Group Joined'
     else
-      flash[:alert] = 'Cannot accept invitation'
-      redirect_to root_path
+      redirect_to root_path, alert: 'Cannot accept invitation'
     end
   end
 
   def destroy
     if @invitation.destroy
-      flash[:notice] = 'Invitation Declined'
-      redirect_to groups_path
+      redirect_to groups_path, notice: 'Invitation Declined'
     else
-      flash[:alert] = 'Cannot destroy invitation'
-      redirect_to root_path
+      redirect_to root_path, alert: 'Cannot destroy invitation'
     end
   end
 
