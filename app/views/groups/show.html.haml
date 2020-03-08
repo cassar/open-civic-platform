@@ -19,7 +19,7 @@
     .tile-container
       - @invitations.each do |invitation|
         .tile
-          %p= invitation.profile.name
+          %p= invitation.profile.name || invitation.profile.userable.email
   - else
     %p There are no invitations pending for this group
   = link_to 'Back to Groups', groups_path

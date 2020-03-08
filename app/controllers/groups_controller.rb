@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
 
   def show
     @memberships = group.confirmed_memberships.preload(:profile)
-    @invitations = group.invitations.preload(:profile)
+    @invitations = group.invitations.preload profile: :userable
     @issues = group.issues
   end
 
