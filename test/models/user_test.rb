@@ -22,8 +22,12 @@ class UserTest < ActiveSupport::TestCase
 
   test 'after create new profile' do
     User.destroy_all
-    assert_difference('Profile.count') do
-      User.create(email: 'test@email.com', password: 'password', password_confirmation: 'password')
+    assert_difference 'Profile.count' do
+      User.create(
+        email: 'test@email.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
     end
   end
 end
