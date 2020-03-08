@@ -15,3 +15,8 @@ two:
   userable_id: 1
   userable_type: Placeholder
   name: MyString
+
+three:
+  id: 3
+  userable_id: 2
+  userable_type: User
