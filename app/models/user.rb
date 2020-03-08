@@ -16,6 +16,15 @@ class User < ApplicationRecord
   private
 
   def link_to_profile
-    Profile.create(userable: self)
+    if (placeholder = Placeholder.find_by email: email).present?
+      replace_placeholder placeholder
+    else
+      Profile.create userable: self
+    end
+  end
+
+  def replace_placeholder(placeholder)
+    placeholder.profile.update! userable: self
+    placeholder.destroy!
   end
 end

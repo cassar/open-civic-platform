@@ -30,4 +30,12 @@ class UserTest < ActiveSupport::TestCase
       )
     end
   end
+
+  test 'after create replace placeholder' do
+    User.destroy_all
+    Placeholder.create email: 'test@email.com'
+    assert_no_difference 'Profile.count' do
+
+    end
+  end
 end
