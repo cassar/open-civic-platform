@@ -1,7 +1,7 @@
 class Placeholder < ApplicationRecord
   has_one :profile, as: :userable
 
-  validates :email, email: true
+  validates :email, email: { message: 'format not recognised' }
 
   after_create :link_to_profile
 
