@@ -13,4 +13,10 @@ class PlaceholderTest < ActiveSupport::TestCase
   test 'placeholder validations' do
     assert_not @placeholder.update email: nil
   end
+
+  test 'link_profile after create call back' do
+    assert_difference 'Profile.count', 1 do
+      Placeholder.create! email: 'test@email.com'
+    end
+  end
 end
