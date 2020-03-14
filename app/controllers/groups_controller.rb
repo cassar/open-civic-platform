@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @membership = current_user.memberships.find_by group: @group
     @memberships = group.confirmed_memberships.preload(:profile)
     @invitations = group.invitations.preload profile: :userable
     @issues = group.issues

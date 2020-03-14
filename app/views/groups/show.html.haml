@@ -1,9 +1,11 @@
 - content_for :title, @group.name
 %h1= yield :title
 %section
-  %p= link_to 'Edit', edit_group_path(@group)
+  - if @membership.confirmed?
+    %p= link_to 'Edit', edit_group_path(@group)
   %h2 Issues
-  %p= link_to 'Create New Issue', new_group_issue_path(@group)
+  - if @membership.confirmed?
+    %p= link_to 'Create New Issue', new_group_issue_path(@group)
   .tile-container
     - @issues.each do |issue|
       = link_to group_issue_path(@group, issue), class: 'tile' do
@@ -14,7 +16,8 @@
       .tile
         %p= membership.profile.name
   %h3 Invitations
-  %p= link_to 'Invite New Members', new_group_invitation_path(@group)
+  - if @membership.confirmed?
+    %p= link_to 'Invite New Members', new_group_invitation_path(@group)
   - if @invitations.present?
     .tile-container
       - @invitations.each do |invitation|
@@ -22,4 +25,9 @@
           %p= invitation.profile.name || invitation.profile.userable.email
   - else
     %p There are no invitations pending for this group
+  - if @membership.invited?
+    %h2 Options
+    .tile-container
+      .tile= link_to 'Accept Invitation', invitation_path(@membership), method: :patch
+      .tile= link_to 'Decline Invitation', invitation_path(@membership), method: :delete
   = link_to 'Back to Groups', groups_path

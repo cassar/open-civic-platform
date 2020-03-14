@@ -1,8 +1,10 @@
 class Groups::IssuesController < GroupsController
   before_action :authenticate_user!
-  before_action :authorize_user!
+  before_action :authorize_user!, except: :show
+  before_action :authorize_user_show!, only: :show
 
   def show
+    @membership = current_user.memberships.find_by group: @group
     @issue = Issue.find(params[:id])
     @positions = @issue.positions.preload(:supports)
   end
