@@ -1,13 +1,16 @@
 class InviteNewMember
-  attr_reader :invitation, :email, :group, :inviter_user
+  attr_reader :invitation, :email, :group, :inviter_user, :profile_id
 
-  def initialize(email, group, inviter_user)
-    @email = email
+  def initialize(membership_params, group, inviter_user)
+    @email = membership_params[:email]
+    @profile = Profile.find_by_id membership_params[:profile_id]
     @group = group
     @inviter_user = inviter_user
   end
 
   def attempt!
+    profile
+
     return false unless userable.persisted?
 
     @invitation = group.invitations.create profile: profile
@@ -40,6 +43,7 @@ class InviteNewMember
   end
 
   def userable
+    @userable ||= @profile&.userable
     @userable ||= User.find_by_email email
     @userable ||= Placeholder.find_or_create_by email: email
   end

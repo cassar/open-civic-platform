@@ -14,7 +14,7 @@
       .tile
         %p= membership.profile.name
   %h3 Invitations
-  %p= link_to 'Invite New Member', new_group_invitation_path(@group)
+  %p= link_to 'Invite New Members', new_group_invitation_path(@group)
   - if @invitations.present?
     .tile-container
       - @invitations.each do |invitation|

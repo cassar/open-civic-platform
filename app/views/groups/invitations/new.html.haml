@@ -1,26 +1,18 @@
 - content_for :title, "Invite New Member to #{@group.name}"
 %h1= yield :title
 %section
-  = form_tag new_group_invitation_path(@group), method: :get do
+  = form_for User.new, url: group_invitations_path(@group) do |form|
     .form-group
-      = text_field_tag :term, params[:term], class: 'form-control', placeholder: 'Enter a name or email'
+      = form.text_field :email,
+        placeholder: 'Enter an email',                                         |
+        class: 'form-control'                                                  |
     .actions.form-group
-      = submit_tag 'Search', class: 'btn btn-primary'
-  - if @profile.present?
-    %h2= @profile.name
-    - if @membership.present?
-      - if @membership.invited?
-        %p Has already been invited.
-      - elsif @membership.confirmed?
-        %p= "#{@profile.name} is already a group member."
-    - else
-      %p= "#{@profile.name} is not currently a member."
-      %p= link_to 'Invite', group_invitations_path(@group, membership: {profile_id: @profile.id}), method: :post
-  - elsif @profiles.present?
-    .tile-container
-      - @profiles.each do |profile|
-        = link_to new_group_invitation_path(@group, profile_id: profile.id), class: 'tile' do
-          %p= profile.name
-  - elsif params[:term].present?
-    %p= "No results found matching the term '#{params[:term]}'."
+      = submit_tag 'Invite', class: 'btn btn-primary'
+  .tile-container
+    - @profiles.each do |profile|
+      .tile
+        %p= link_to "Invite #{profile.name || profile.userable.email}",        |
+          group_invitations_path(@group, user: { profile_id: profile.id }),    |
+          method: :post                                                        |
+
   = link_to 'Back to Group', group_path(@group)
