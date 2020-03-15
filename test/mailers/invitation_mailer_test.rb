@@ -7,6 +7,6 @@ class InvitationMailerTest < ActionMailer::TestCase
       Profile.second,
       Profile.first,
       Group.first
-    ).deliver_now
+    ).deliver_later
   end
 end
