@@ -20,3 +20,10 @@ three:
   id: 3
   userable_id: 2
   userable_type: User
+  name: MyString
+
+four:
+  id: 4
+  userable_id: 3
+  userable_type: User
+  name: MyString

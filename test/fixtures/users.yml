@@ -11,3 +11,7 @@ one:
 two:
     id: 2
     email: example2@example.com
+
+three:
+  id: 3
+  email: example3@example.com
