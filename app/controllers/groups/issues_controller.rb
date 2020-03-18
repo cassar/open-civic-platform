@@ -16,8 +16,7 @@ class Groups::IssuesController < GroupsController
   def create
     @issue = @group.issues.new(issue_params)
     if @issue.save
-      flash[:notice] = 'New issue created'
-      redirect_to group_issue_path(@group, @issue)
+      new_issue_created
     else
       flash[:alert] = @issue.errors.full_messages.to_sentence
       render :new
@@ -28,5 +27,11 @@ class Groups::IssuesController < GroupsController
 
   def issue_params
     params.require(:issue).permit(:name)
+  end
+
+  def new_issue_created
+    NewIssueNotification.new(current_user.profile, @group, @issue).notify!
+    redirect_to group_issue_path(@group, @issue),
+      notice: 'New issue created'
   end
 end
