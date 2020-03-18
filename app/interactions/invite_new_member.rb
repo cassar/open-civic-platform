@@ -39,7 +39,7 @@ class InviteNewMember
 
   def notify_member
     InvitationMailer.invitation_email(userable, profile, inviter_user.profile, group)
-      .deliver_now
+      .deliver_later
   end
 
   def userable

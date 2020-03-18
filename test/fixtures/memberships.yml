@@ -17,3 +17,9 @@ three:
   profile_id: 1
   group_id: 2
   status: Invitee
+
+four:
+  id: 4
+  profile_id: 4
+  group_id: 1
+  status: Member
