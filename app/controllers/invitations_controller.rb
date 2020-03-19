@@ -3,6 +3,7 @@ class InvitationsController < ApplicationController
 
   def update
     if @invitation.accept_invitation
+      NewMemberNotification.new(current_user.profile, Group.find(@invitation.group_id)).notify!
       redirect_to group_path(@invitation.group_id), notice: 'Group Joined'
     else
       redirect_to root_path, alert: 'Cannot accept invitation'
