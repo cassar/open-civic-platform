@@ -5,6 +5,7 @@ class GroupTest < ActiveSupport::TestCase
     @group = Group.first
     @membership = Membership.first
     @profile = Profile.first
+    @user = User.first
     @issue = Issue.first
     @confirmed_membership = @membership
     @confirmed_profile = @profile
@@ -18,6 +19,7 @@ class GroupTest < ActiveSupport::TestCase
     assert @group.issues.include? @issue
     assert @group.confirmed_memberships.include? @confirmed_membership
     assert @group.confirmed_profiles.include? @confirmed_profile
+    assert @group.confirmed_users.include? @user
     assert @group.invitations.include? @invitation
     assert @group.invited_profiles.include? @invited_profile
     @group.destroy
