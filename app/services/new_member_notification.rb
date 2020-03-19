@@ -9,7 +9,7 @@ class NewMemberNotification
       .pluck(:email)
   end
 
-  def notify!
+  def notify_accepted!
     emails.each do |email|
       InvitationMailer.accepted_email(email, invitee_profile, group)
         .deliver_later

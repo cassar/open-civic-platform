@@ -7,7 +7,7 @@ class NewMemberNotificationTest < ActiveSupport::TestCase
     @notification = NewMemberNotification.new(@profile, @group)
   end
 
-  test 'notify!' do
-    assert @notification.notify!
+  test 'notify_accepted!' do
+    assert @notification.notify_accepted!
   end
 end
