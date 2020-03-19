@@ -15,4 +15,11 @@ class NewMemberNotification
         .deliver_later
     end
   end
+
+  def notify_declined!
+    emails.each do |email|
+      InvitationMailer.declined_email(email, invitee_profile, group)
+        .deliver_later
+    end
+  end
 end

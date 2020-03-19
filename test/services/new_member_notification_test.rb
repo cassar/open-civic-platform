@@ -10,4 +10,8 @@ class NewMemberNotificationTest < ActiveSupport::TestCase
   test 'notify_accepted!' do
     assert @notification.notify_accepted!
   end
+
+  test 'notify_declined!' do
+    assert @notification.notify_declined!
+  end
 end
