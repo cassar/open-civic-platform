@@ -5,11 +5,9 @@ class NewIssueNotification
     @creator_profile = creator_profile
     @group = group
     @issue = issue
-    @emails = group.confirmed_profiles
-      .where.not(id: creator_profile.id)
-      .preload(:userable)
-      .map(&:userable)
-      .map(&:email)
+    @emails = group.confirmed_users
+      .where.not(id: creator_profile.userable_id)
+      .pluck(:email)
   end
 
   def notify!
