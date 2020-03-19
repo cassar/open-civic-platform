@@ -3,4 +3,8 @@ class InvitationMailerPreview < ActionMailer::Preview
   def invitation_email
     InvitationMailer.invitation_email User.second, Profile.second, Profile.first, Group.first
   end
+
+  def accepted_email
+    InvitationMailer.accepted_email User.first.email, Profile.second, Group.first
+  end
 end
