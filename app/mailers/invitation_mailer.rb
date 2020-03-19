@@ -16,4 +16,12 @@ class InvitationMailer < ApplicationMailer
     mail to: notifyee_email,
       subject: "Invitation accepted by #{@invitee_profile.name}"
   end
+
+  def declined_email(notifyee_email, invitee_profile, group)
+    @invitee_profile = invitee_profile
+    @group = group
+
+    mail to: notifyee_email,
+      subject: "Invitation declined by #{@invitee_profile.name}"
+  end
 end

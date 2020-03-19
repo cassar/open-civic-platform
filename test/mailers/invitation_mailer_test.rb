@@ -22,4 +22,12 @@ class InvitationMailerTest < ActionMailer::TestCase
       @group
     ).deliver_now
   end
+
+  test 'declined_email' do
+    assert InvitationMailer.declined_email(
+      User.first.email,
+      @profile,
+      @group
+    ).deliver_now
+  end
 end
