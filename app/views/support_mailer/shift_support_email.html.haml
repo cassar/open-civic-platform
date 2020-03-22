@@ -1,0 +1,24 @@
+%p Support for a position has been shifted...
+
+%p
+  %strong
+    Supporter:
+  = @supporter_profile.name
+%p
+  %strong
+    Old Position:
+  = @old_position.name
+%p
+  %strong
+    New Position:
+  = @new_position.name
+%p
+  %strong
+    Outline:
+  = @new_position.outline
+%p
+  %strong
+    Support Count:
+  = @support_count
+
+%p= link_to 'Go to New Position', issue_position_url(@new_position.issue_id, @new_position)
