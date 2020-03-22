@@ -12,6 +12,8 @@ class InvitationsController < ApplicationController
 
   def destroy
     if @invitation.destroy
+      NewMemberNotification.new(current_user.profile, Group.find(@invitation.group_id))
+        .notify_declined!
       redirect_to groups_path, notice: 'Invitation Declined'
     else
       redirect_to root_path, alert: 'Cannot destroy invitation'
