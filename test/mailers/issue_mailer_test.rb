@@ -10,6 +10,6 @@ class IssueMailerTest < ActionMailer::TestCase
 
   test 'new_issue_email' do
     assert IssueMailer.new_issue_email(@email, @profile, @group, @issue)
-      .deliver_later
+      .deliver_now
   end
 end
