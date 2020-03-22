@@ -16,6 +16,8 @@ class Issues::PositionsController < ApplicationController
   def create
     @position = @issue.positions.new(position_params)
     if @position.save
+      NewPositionNotification.new(current_user, @group, @issue, @position)
+        .notify!
       redirect_to group_issue_path(@group, @issue),
         notice: 'Successfully Created Position'
     else
