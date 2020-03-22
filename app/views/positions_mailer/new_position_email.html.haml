@@ -1,0 +1,24 @@
+%p A new Position has been created...
+
+%p
+  %strong
+    Creator:
+  = @creator_profile.name
+%p
+  %strong
+    Group:
+  = @group.name
+%p
+  %strong
+    Issue:
+  = @issue.name
+%p
+  %strong
+    Position:
+  = @position.name
+%p
+  %strong
+    Outline:
+  = @position.outline
+
+%p= link_to 'Go to Position', issue_position_url(@issue, @position)
