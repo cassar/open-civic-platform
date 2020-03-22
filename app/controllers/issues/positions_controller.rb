@@ -16,11 +16,10 @@ class Issues::PositionsController < ApplicationController
   def create
     @position = @issue.positions.new(position_params)
     if @position.save
-      flash[:notice] = 'Successfully Created Position'
-      redirect_to group_issue_path @group, @issue
+      redirect_to group_issue_path(@group, @issue),
+        notice: 'Successfully Created Position'
     else
-      flash[:alert] = @position.errors.full_messages.to_sentence
-      redirect_to :new
+      redirect_to :new, alert: @position.errors.full_messages.to_sentence
     end
   end
 
