@@ -3,8 +3,7 @@ class Positions::SupportsController < ApplicationController
   before_action :validate_update!, only: :update
 
   def create
-    membership = Membership.find_by(group: @group, profile: current_user.profile)
-    support = Support.create(position: @position, membership: membership)
+    support = Support.create(position: @position, membership: @membership)
     if support.save
       flash[:notice] = 'Support Registered'
     else
@@ -20,10 +19,11 @@ class Positions::SupportsController < ApplicationController
   end
 
   def update
-      flash[:notice] = 'Support Registered'
+    old_position = @support.position
     if @support.update(position: @position)
+      flash[:notice] = 'Support Shifted'
     else
-      flash[:alert] = support.errors.full_messages.to_sentence
+      flash[:alert] = @support.errors.full_messages.to_sentence
     end
     redirect_to group_issue_path(@group, @position.issue_id)
   end
@@ -33,7 +33,9 @@ class Positions::SupportsController < ApplicationController
   def authorize_user!
     @position = Position.find(params[:position_id])
     @group = @position.group
-    return if @group.confirmed_profiles.include? current_user.profile
+    @profile = current_user.profile
+    @membership = Membership.find_by(group: @group, profile: @profile)
+    return if @group.confirmed_memberships.include? @membership
 
     redirect_to root_path, alert: 'Not able to interact with this group.'
   end
