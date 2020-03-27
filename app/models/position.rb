@@ -3,6 +3,7 @@ class Position < ApplicationRecord
 
   has_one :group, through: :issue
 
+  has_many :confirmed_users, through: :group
   has_many :supports, dependent: :destroy
 
   validates :name, presence: true
