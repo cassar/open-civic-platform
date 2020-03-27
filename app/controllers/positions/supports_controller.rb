@@ -5,6 +5,8 @@ class Positions::SupportsController < ApplicationController
   def create
     support = Support.create(position: @position, membership: @membership)
     if support.save
+      SupportNotifications.new(**base_notification_params)
+        .notify_registered!
       flash[:notice] = 'Support Registered'
     else
       flash[:alert] = support.errors.full_messages.to_sentence
@@ -14,6 +16,8 @@ class Positions::SupportsController < ApplicationController
 
   def destroy
     Support.find(params[:id]).destroy
+    SupportNotifications.new(**base_notification_params)
+      .notify_withdrawn!
     flash[:notice] = 'Support Withdrawn'
     redirect_to group_issue_path(@group, @position.issue_id)
   end
@@ -21,6 +25,8 @@ class Positions::SupportsController < ApplicationController
   def update
     old_position = @support.position
     if @support.update(position: @position)
+      SupportNotifications.new(**base_notification_params, old_position: old_position)
+        .notify_shifted!
       flash[:notice] = 'Support Shifted'
     else
       flash[:alert] = @support.errors.full_messages.to_sentence
@@ -46,5 +52,9 @@ class Positions::SupportsController < ApplicationController
 
     redirect_to group_issue_path(@group, @position.issue_id),
       alert: 'Already Support that Position'
+  end
+
+  def base_notification_params
+    {supporter_profile: @profile, position: @position}
   end
 end
