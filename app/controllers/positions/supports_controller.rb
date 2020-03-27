@@ -1,6 +1,5 @@
 class Positions::SupportsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_user!
+  before_action :authenticate_user!, :authorize_user!
 
   def create
     membership = Membership.find_by(group: @group, profile: current_user.profile)
@@ -14,8 +13,7 @@ class Positions::SupportsController < ApplicationController
   end
 
   def destroy
-    support = Support.find(params[:id])
-    support.destroy
+    Support.find(params[:id]).destroy
     flash[:notice] = 'Support Withdrawn'
     redirect_to group_issue_path(@group, @position.issue_id)
   end
