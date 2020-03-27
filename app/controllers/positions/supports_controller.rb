@@ -1,5 +1,6 @@
 class Positions::SupportsController < ApplicationController
   before_action :authenticate_user!, :authorize_user!
+  before_action :validate_update!, only: :update
 
   def create
     membership = Membership.find_by(group: @group, profile: current_user.profile)
@@ -19,9 +20,8 @@ class Positions::SupportsController < ApplicationController
   end
 
   def update
-    support = Support.find(params[:id])
-    if support.update(position: @position)
       flash[:notice] = 'Support Registered'
+    if @support.update(position: @position)
     else
       flash[:alert] = support.errors.full_messages.to_sentence
     end
@@ -36,5 +36,13 @@ class Positions::SupportsController < ApplicationController
     return if @group.confirmed_profiles.include? current_user.profile
 
     redirect_to root_path, alert: 'Not able to interact with this group.'
+  end
+
+  def validate_update!
+    @support = Support.find(params[:id])
+    return if @support.position_id != @position.id
+
+    redirect_to group_issue_path(@group, @position.issue_id),
+      alert: 'Already Support that Position'
   end
 end

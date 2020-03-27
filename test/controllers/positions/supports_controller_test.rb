@@ -3,6 +3,7 @@ require 'test_helper'
 class Positions::SupportsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @position = Position.first
+    @new_position = Position.second
     @support = Support.first
     @group = Group.first
     @issue = Issue.first
@@ -18,8 +19,15 @@ class Positions::SupportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should patch update' do
+    patch position_support_url(@new_position, @support)
+    assert_redirected_to group_issue_url(@group, @issue)
+    assert_equal 'Support Shifted', flash[:notice]
+  end
+
+  test 'should redirect invalid update' do
     patch position_support_url(@position, @support)
     assert_redirected_to group_issue_url(@group, @issue)
+    assert_equal 'Already Support that Position', flash[:alert]
   end
 
   test 'should delete destroy' do
