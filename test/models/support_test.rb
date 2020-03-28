@@ -6,12 +6,16 @@ class SupportTest < ActiveSupport::TestCase
     @position = Position.first
     @issue = Issue.first
     @membership = Membership.first
+    @profile = Profile.first
+    @user = User.first
   end
 
   test 'support associations' do
     assert @support.position == @position
     assert @support.membership == @membership
     assert @support.issue == @issue
+    assert @support.profile == @profile
+    assert @support.user == @user
   end
 
   test 'only_one_support_per_issue' do

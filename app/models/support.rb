@@ -3,6 +3,8 @@ class Support < ApplicationRecord
   belongs_to :position
 
   has_one :issue, through: :position
+  has_one :profile, through: :membership
+  has_one :user, through: :profile, source: :userable, source_type: 'User'
 
   validate :only_one_support_per_issue
 
