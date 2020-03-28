@@ -2,9 +2,10 @@ class Groups::InvitationsController < GroupsController
   before_action :authenticate_user!, :authorize_user!
 
   def new
-    @profiles = Profile.where.not(
-      id: Membership.where(group: @group).pluck(:profile_id)
-    ).preload(:userable)
+    @profiles = Profile
+      .where(id: Membership.where(group: current_user.groups).pluck(:profile_id).uniq)
+      .where.not(id: Membership.where(group: @group).pluck(:profile_id))
+      .preload(:userable)
   end
 
   def create
