@@ -6,7 +6,7 @@ class SupportNotifications
     @position = position
     @old_position = old_position
     @support_count = position.supports.count
-    @emails = position.confirmed_users
+    @emails = position.issue.supporter_users
       .where.not(id: supporter_profile.userable_id)
       .pluck(:email)
   end
