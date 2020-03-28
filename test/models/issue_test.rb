@@ -11,9 +11,9 @@ class IssueTest < ActiveSupport::TestCase
 
   test 'issue associations' do
     assert @issue.group == @group
-    assert @issue.positions.include? @position
     assert @issue.supports.include? @support
     assert @issue.supporter_users.include? @user
+    assert @issue.positions.include? @position
     @issue.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @position.reload }
   end
