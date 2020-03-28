@@ -5,7 +5,7 @@
   %p= "#{pluralize @position.supports.length, 'member supports', 'members support'} this position"
   - if @membership.confirmed?
     - if @support.present?
-      - if @support.position_id == position.id
+      - if @support.position_id == @position.id
         %p= link_to 'Withdraw Support',                                        |
           position_support_path(@position, @support),                          |
           method: :delete
