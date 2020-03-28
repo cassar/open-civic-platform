@@ -10,7 +10,7 @@ class Issues::PositionsController < ApplicationController
   def show
     @membership = current_user.memberships.find_by group: @group
     @position = Position.find params[:id]
-    @support = Support.find_by(position: @positions, membership: current_user.memberships)
+    @support = Support.find_by(position: @issue.positions, membership: current_user.memberships)
   end
 
   def create
