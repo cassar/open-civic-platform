@@ -38,7 +38,7 @@ class SupportNotifications
       SupportMailer.shift_support_email(
         email: email,
         supporter_profile: supporter_profile,
-        position: position,
+        new_position: position,
         support_count: support_count,
         old_position: old_position
       ).deliver_later
