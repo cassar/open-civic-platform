@@ -1,0 +1,8 @@
+{
+  "name": "Open Civic",
+  "description": "An App to Organise, Discuss, and Act",
+  "website": "https://www.open-civic.com/",
+  "repository": "https://github.com/cassar/open-civic-platform",
+  "logo": "https://open-civic.s3-ap-southeast-2.amazonaws.com/bannerlogo.png",
+  "success_url": "/",
+}
