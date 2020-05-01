@@ -40,6 +40,7 @@ class Issues::PositionsController < ApplicationController
   def post_create_tasks
     return unless @position.save
 
+    Support.create(position: @position, membership: membership)
     NewPositionNotification.new(current_user, group, issue, @position)
       .notify!
   end
@@ -62,5 +63,9 @@ class Issues::PositionsController < ApplicationController
 
   def group
     @group ||= issue.group
+  end
+
+  def membership
+    @membership ||= current_user.memberships.find_by group: group
   end
 end
