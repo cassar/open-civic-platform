@@ -3,7 +3,7 @@ class Issues::PositionsController < ApplicationController
   before_action :authorize_user!, except: :show
   before_action :authorize_user_show!, only: :show
 
-  after_action :post_create_tasks, only: :create
+  after_action :success_tasks, only: :create
 
   def new
     @position = @issue.positions.new
@@ -37,7 +37,7 @@ class Issues::PositionsController < ApplicationController
     redirect_failed_authorization
   end
 
-  def post_create_tasks
+  def success_tasks
     return unless @position.save
 
     Support.create(position: @position, membership: membership)
