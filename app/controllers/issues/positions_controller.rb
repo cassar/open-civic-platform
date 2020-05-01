@@ -3,6 +3,8 @@ class Issues::PositionsController < ApplicationController
   before_action :authorize_user!, except: :show
   before_action :authorize_user_show!, only: :show
 
+  after_action :post_create_tasks, only: :create
+
   def new
     @position = @issue.positions.new
   end
@@ -16,8 +18,6 @@ class Issues::PositionsController < ApplicationController
   def create
     @position = @issue.positions.new(position_params)
     if @position.save
-      NewPositionNotification.new(current_user, @group, @issue, @position)
-        .notify!
       redirect_to group_issue_path(@group, @issue),
         notice: 'Successfully Created Position'
     else
@@ -35,6 +35,13 @@ class Issues::PositionsController < ApplicationController
     return if group.confirmed_profiles.include? current_user.profile
 
     redirect_failed_authorization
+  end
+
+  def post_create_tasks
+    return unless @position.save
+
+    NewPositionNotification.new(current_user, group, issue, @position)
+      .notify!
   end
 
   def authorize_user_show!
