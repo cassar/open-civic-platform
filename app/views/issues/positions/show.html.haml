@@ -2,8 +2,15 @@
 %h1= yield :title
 %section
   %p= @position.outline
-  %p= "#{pluralize @position.supports.length, 'member supports', 'members support'} this position"
+  %h2 Supporters
   = render 'support_options'
+  - if @supporting_profiles.any?
+    .tile-container
+      - @supporting_profiles.each do |profile|
+        .tile
+          %p= profile.name
+  - else
+    %p This Position does not have any Supporters
 
   %p= link_to 'Back to Issue', group_issue_path(@group, @issue)
   %p= link_to 'Back to Group', group_path(@group)

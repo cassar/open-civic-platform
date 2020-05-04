@@ -13,6 +13,7 @@ class Issues::PositionsController < ApplicationController
     @membership = current_user.memberships.find_by group: @group
     @position = Position.find params[:id]
     @support = Support.find_by(position: @issue.positions, membership: current_user.memberships)
+    @supporting_profiles = @position.supporting_profiles
   end
 
   def create
