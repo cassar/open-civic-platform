@@ -5,6 +5,7 @@ class Position < ApplicationRecord
 
   has_many :confirmed_users, through: :group
   has_many :supports, dependent: :destroy
+  has_many :supporting_profiles, through: :supports, source: :profile
 
   validates :name, presence: true
 end

@@ -7,6 +7,7 @@ class PositionTest < ActiveSupport::TestCase
     @user = User.first
     @support = Support.first
     @group = Group.first
+    @profile = profiles(:one)
   end
 
   test 'position associations' do
@@ -14,6 +15,7 @@ class PositionTest < ActiveSupport::TestCase
     assert @position.group == @group
     assert @position.confirmed_users.include? @user
     assert @position.supports.include? @support
+    assert @position.supporting_profiles.include? @profile
     @position.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @support.reload }
   end
