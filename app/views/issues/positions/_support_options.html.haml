@@ -1,0 +1,14 @@
+- if @membership.confirmed?
+  - if @support.present?
+    - if @support.position_id == @position.id
+      %p= link_to 'Withdraw Support',                                          |
+        position_support_path(@position, @support),                            |
+        method: :delete
+    - else
+      %p= link_to 'Shift Support',                                             |
+        position_support_path(@position, @support),                            |
+        method: :patch
+  - else
+    %p= link_to 'Support Position',                                            |
+      position_supports_path(@position),                                       |
+      method: :post
