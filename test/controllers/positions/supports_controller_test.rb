@@ -15,18 +15,18 @@ class Positions::SupportsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Support.count') do
       post position_supports_url(@position)
     end
-    assert_redirected_to group_issue_url(@group, @issue)
+    assert_redirected_to issue_position_url(@issue, @position)
   end
 
   test 'should patch update' do
     patch position_support_url(@new_position, @support)
-    assert_redirected_to group_issue_url(@group, @issue)
+    assert_redirected_to issue_position_url(@issue, @new_position)
     assert_equal 'Support Shifted', flash[:notice]
   end
 
   test 'should redirect invalid update' do
     patch position_support_url(@position, @support)
-    assert_redirected_to group_issue_url(@group, @issue)
+    assert_redirected_to issue_position_url(@issue, @position)
     assert_equal 'Already Support that Position', flash[:alert]
   end
 
@@ -34,6 +34,6 @@ class Positions::SupportsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Support.count', -1) do
       delete position_support_url(@position, @support)
     end
-    assert_redirected_to group_issue_url(@group, @issue)
+    assert_redirected_to issue_position_url(@issue, @position)
   end
 end

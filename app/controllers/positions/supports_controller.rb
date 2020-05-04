@@ -11,7 +11,7 @@ class Positions::SupportsController < ApplicationController
     else
       flash[:alert] = support.errors.full_messages.to_sentence
     end
-    redirect_to group_issue_path(@group, @position.issue_id)
+    redirect_to issue_position_path(@position.issue_id, @position)
   end
 
   def destroy
@@ -19,7 +19,7 @@ class Positions::SupportsController < ApplicationController
     SupportNotifications.new(**base_notification_params)
       .notify_withdrawn!
     flash[:notice] = 'Support Withdrawn'
-    redirect_to group_issue_path(@group, @position.issue_id)
+    redirect_to issue_position_path(@position.issue_id, @position)
   end
 
   def update
@@ -31,7 +31,7 @@ class Positions::SupportsController < ApplicationController
     else
       flash[:alert] = @support.errors.full_messages.to_sentence
     end
-    redirect_to group_issue_path(@group, @position.issue_id)
+    redirect_to issue_position_path(@position.issue_id, @position)
   end
 
   private
@@ -50,7 +50,7 @@ class Positions::SupportsController < ApplicationController
     @support = Support.find(params[:id])
     return if @support.position_id != @position.id
 
-    redirect_to group_issue_path(@group, @position.issue_id),
+    redirect_to issue_position_path(@position.issue_id, @position),
       alert: 'Already Support that Position'
   end
 
