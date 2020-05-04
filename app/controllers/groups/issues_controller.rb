@@ -3,6 +3,8 @@ class Groups::IssuesController < GroupsController
   before_action :authorize_user!, except: :show
   before_action :authorize_user_show!, only: :show
 
+  after_action :notify_group, only: :create
+
   def show
     @membership = current_user.memberships.find_by group: @group
     @issue = Issue.find(params[:id])
@@ -16,7 +18,8 @@ class Groups::IssuesController < GroupsController
   def create
     @issue = @group.issues.new(issue_params)
     if @issue.save
-      new_issue_created
+      redirect_to group_issue_path(@group, @issue),
+        notice: 'New issue created'
     else
       flash[:alert] = @issue.errors.full_messages.to_sentence
       render :new
@@ -29,9 +32,9 @@ class Groups::IssuesController < GroupsController
     params.require(:issue).permit(:name)
   end
 
-  def new_issue_created
+  def notify_group
+    return unless @issue.save
+
     NewIssueNotification.new(current_user.profile, @group, @issue).notify!
-    redirect_to group_issue_path(@group, @issue),
-      notice: 'New issue created'
   end
 end
