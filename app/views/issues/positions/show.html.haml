@@ -1,7 +1,7 @@
 - content_for :title, @position.name
 %h1= yield :title
+%p= @position.outline
 %section
-  %p= @position.outline
   %h2 Supporters
   = render 'support_options'
   - if @supporting_profiles.any?
