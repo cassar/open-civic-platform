@@ -4,6 +4,7 @@ one:
   id: 1
   group_id: 1
   name: MyString
+  position_id: 2
 
 two:
   id: 2
