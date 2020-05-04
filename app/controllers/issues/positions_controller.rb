@@ -14,6 +14,7 @@ class Issues::PositionsController < ApplicationController
     @position = Position.find params[:id]
     @support = Support.find_by(position: @issue.positions, membership: current_user.memberships)
     @supporting_profiles = @position.supporting_profiles
+    @next_issues = @position.issues
   end
 
   def create

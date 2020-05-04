@@ -1,0 +1,2 @@
+module Positions::IssuesHelper
+end

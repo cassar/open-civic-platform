@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   resources :positions, only: [] do
     resources :supports, only: [:create, :destroy, :update], controller: 'positions/supports'
+    resources :issues, only: [:new, :create], controller: 'positions/issues'
   end
 
   get 'complete_profile', to: 'profiles#edit'

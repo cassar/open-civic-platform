@@ -12,4 +12,13 @@
   - else
     %p This Position does not have any Supporters
 
+  %h2 Next Issues
+  %p= link_to 'Create New Issue', new_position_issue_path(@position)
+  - if @next_issues.any?
+    - @next_issues.each do |issue|
+      .tile-container
+        = link_to group_issue_path(@group, issue), class: 'tile' do
+          = issue.name
+  - else
+    %p This Position does not have any following Issues
   %p= link_to 'Back to Issue', group_issue_path(@group, @issue)

@@ -1,5 +1,9 @@
 - content_for :title, @issue.name
 %h1= yield :title
+- if @position.present?
+  %p
+    This Issue follows on from the Position:
+    = link_to @position.name, issue_position_path(@position.issue_id, @position)
 %section
   - if @membership.confirmed?
     %p= link_to 'Create New Position', new_issue_position_path(@issue)
