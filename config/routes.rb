@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'devise/sessions#destroy'
     get 'account', to: 'devise/registrations#edit'
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :memberships, only: :destroy
   resources :invitations, only: [:update, :destroy]
