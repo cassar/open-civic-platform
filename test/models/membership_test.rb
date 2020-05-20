@@ -25,6 +25,8 @@ class MembershipTest < ActiveSupport::TestCase
   test 'membership scopes' do
     assert Membership.confirmed.include? @confirmed
     assert Membership.invited.include? @invited
+    assert Membership.subscribed.include? @membership
+    assert Membership.subscribed.exclude? @invited
   end
 
   test 'membership validations' do

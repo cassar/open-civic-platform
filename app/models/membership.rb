@@ -12,6 +12,7 @@ class Membership < ApplicationRecord
 
   scope :confirmed, -> { where(status: MEMBER) }
   scope :invited, -> { where(status: INVITEE) }
+  scope :subscribed, -> { where(subscribed: true) }
 
   validates :status, inclusion: { in: STATUS_TYPES }
   validates :group_id, uniqueness: { scope: :profile_id,

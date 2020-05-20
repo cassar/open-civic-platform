@@ -5,6 +5,7 @@ one:
   profile_id: 1
   group_id: 1
   status: Member
+  subscribed: true
 
 two:
   id: 2

@@ -27,16 +27,26 @@ nouns = ['Golfers', 'Readers', 'Livers', 'People', 'Nobodies']
   noun = nouns.sample
   group = Group.create(name: "#{adjective} #{noun} #{number}")
   Profile.all.take(10).each do |profile|
-    group.memberships.create(profile: profile, status: ['Member', 'Invitee'].sample)
+    group.memberships.create(
+      profile: profile,
+      status: ['Member', 'Invitee'].sample,
+      subscribed: [true, false, nil].sample
+    )
   end
 
   3.times do |issue_number|
     issue = group.issues.create(name: "Issue #{issue_number}")
 
     position = issue.positions.create(name: 'Position 1', outline: Faker::Lorem.paragraph)
-    position.supports.create(membership: group.confirmed_memberships.first)
+    position.supports.create(
+      membership: group.confirmed_memberships.first,
+      subscribed: [true, false, nil].sample
+    )
 
     position = issue.positions.create(name: 'Position 2', outline: Faker::Lorem.paragraph)
-    position.supports.create(membership: group.confirmed_memberships.last)
+    position.supports.create(
+      membership: group.confirmed_memberships.last,
+      subscribed: [true, false, nil].sample
+    )
   end
 end

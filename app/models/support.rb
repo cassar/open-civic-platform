@@ -6,6 +6,8 @@ class Support < ApplicationRecord
   has_one :profile, through: :membership
   has_one :user, through: :profile, source: :userable, source_type: 'User'
 
+  scope :subscribed, -> { where(subscribed: true) }
+
   validate :only_one_support_per_issue
 
   private
