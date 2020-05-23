@@ -1,6 +1,5 @@
 class MembershipsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_user!
+  before_action :authenticate_user!, :authorize_user!
 
   def destroy
     if @membership.destroy
