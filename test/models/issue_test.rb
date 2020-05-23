@@ -16,7 +16,6 @@ class IssueTest < ActiveSupport::TestCase
     assert @issue.supports.include? @support
     assert @issue.subscribed_supports.include? @support
     assert @issue.subscribed_supports.exclude? supports(:two)
-    assert @issue.supporter_users.include? @user
     assert @issue.subscribed_users.include? @user
     assert @issue.subscribed_users.exclude? users(:three)
     assert @issue.positions.include? @position
