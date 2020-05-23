@@ -18,8 +18,14 @@ class GroupTest < ActiveSupport::TestCase
     assert @group.profiles.include? @profile
     assert @group.issues.include? @issue
     assert @group.confirmed_memberships.include? @confirmed_membership
+    assert @group.confirmed_subscribed_memberships.include? @confirmed_membership
+    assert @group.confirmed_subscribed_memberships.exclude? memberships(:four)
     assert @group.confirmed_profiles.include? @confirmed_profile
+    assert @group.confirmed_subscribed_profiles.include? @confirmed_profile
+    assert @group.confirmed_subscribed_profiles.exclude? profiles(:four)
     assert @group.confirmed_users.include? @user
+    assert @group.confirmed_subscribed_users.include? @user
+    assert @group.confirmed_subscribed_users.exclude? users(:three)
     assert @group.invitations.include? @invitation
     assert @group.invited_profiles.include? @invited_profile
     @group.destroy
