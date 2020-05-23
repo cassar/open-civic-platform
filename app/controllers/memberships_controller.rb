@@ -1,16 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :authenticate_user!, :authorize_user!
 
-  def destroy
-    if @membership.destroy
-      flash[:notice] = 'Left group'
-      redirect_to groups_path
-    else
-      flash[:alert] = 'Cannot leave group'
-      redirect_to root_path
-    end
-  end
-
   def toggle_subscription
     @membership.toggle!(:subscribed)
     redirect_to group_path(@membership.group_id), notice: 'Subscription updated'

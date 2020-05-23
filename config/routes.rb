@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :memberships, only: [:destroy] do
+  resources :memberships, only: [] do
     member { patch :toggle_subscription }
   end
   resources :invitations, only: [:update, :destroy]
