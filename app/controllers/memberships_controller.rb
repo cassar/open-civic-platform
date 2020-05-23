@@ -11,6 +11,11 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def toggle_subscription
+    @membership.toggle!(:subscribed)
+    redirect_to group_path(@membership.group_id), notice: 'Subscription updated'
+  end
+
   private
 
   def authorize_user!

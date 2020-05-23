@@ -3,6 +3,9 @@
 %section
   - if @membership.confirmed?
     %p= link_to 'Edit', edit_group_path(@group)
+    - update_subscription_label = @membership.subscribed ? 'Unsubscribe from' : 'Subscribe to'
+    %p= link_to "#{update_subscription_label} email notifications from this group", |
+      toggle_subscription_membership_path(@membership), method: :patch
   %h2 Issues
   - if @membership.confirmed?
     %p= link_to 'Create New Issue', new_group_issue_path(@group)
