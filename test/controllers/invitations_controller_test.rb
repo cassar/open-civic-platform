@@ -15,7 +15,7 @@ class InvitationsControllerTest < ActionDispatch::IntegrationTest
     assert @invitation.confirmed?
   end
 
-  test 'should delete destroy atleast' do
+  test 'should delete destroy' do
     assert @invitation.invited?
     assert @group.memberships.confirmed.present?
     assert_difference 'Membership.count', -1 do
