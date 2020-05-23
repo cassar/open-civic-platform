@@ -23,7 +23,6 @@ class GroupTest < ActiveSupport::TestCase
     assert @group.confirmed_profiles.include? @confirmed_profile
     assert @group.confirmed_subscribed_profiles.include? @confirmed_profile
     assert @group.confirmed_subscribed_profiles.exclude? profiles(:four)
-    assert @group.confirmed_users.include? @user
     assert @group.confirmed_subscribed_users.include? @user
     assert @group.confirmed_subscribed_users.exclude? users(:three)
     assert @group.invitations.include? @invitation

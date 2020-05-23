@@ -3,7 +3,6 @@ class Position < ApplicationRecord
 
   has_one :group, through: :issue
 
-  has_many :confirmed_users, through: :group
   has_many :supports, dependent: :destroy
   has_many :supporting_profiles, through: :supports, source: :profile
   has_many :issues, dependent: :nullify

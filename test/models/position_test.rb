@@ -14,7 +14,6 @@ class PositionTest < ActiveSupport::TestCase
   test 'position associations' do
     assert @position.issue == @issue
     assert @position.group == @group
-    assert @position.confirmed_users.include? @user
     assert @position.supports.include? @support
     assert @position.supporting_profiles.include? @profile
     assert @parent_position.issues.include? @issue
