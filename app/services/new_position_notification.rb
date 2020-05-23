@@ -6,7 +6,7 @@ class NewPositionNotification
     @group = group
     @issue = issue
     @position = position
-    @emails = group.confirmed_users
+    @emails = group.confirmed_subscribed_users
       .where.not(id: creator_user.id)
       .pluck(:email)
   end

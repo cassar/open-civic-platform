@@ -4,7 +4,7 @@ class NewMemberNotification
   def initialize(invitee_profile, group)
     @invitee_profile = invitee_profile
     @group = group
-    @emails = group.confirmed_users
+    @emails = group.confirmed_subscribed_users
       .where.not(id: invitee_profile.userable_id)
       .pluck(:email)
   end
