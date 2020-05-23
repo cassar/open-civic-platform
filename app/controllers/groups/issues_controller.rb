@@ -10,6 +10,7 @@ class Groups::IssuesController < GroupsController
     @issue = Issue.find(params[:id])
     @position = @issue.position
     @positions = @issue.positions.preload(:supports)
+    @support = @issue.supports.find_by(membership: @membership)
   end
 
   def new

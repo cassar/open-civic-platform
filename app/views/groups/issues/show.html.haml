@@ -6,6 +6,10 @@
     = link_to @position.name, issue_position_path(@position.issue_id, @position)
 %section
   - if @membership.confirmed?
+    - if @support.present?
+      - update_subscription_label = @support.subscribed ? 'Unsubscribe from' : 'Subscribe to'
+      %p= link_to "#{update_subscription_label} email notifications from this issue", |
+        toggle_subscription_support_path(@support), method: :patch
     %p= link_to 'Create New Position', new_issue_position_path(@issue)
   - if @positions.present?
     .tile-container

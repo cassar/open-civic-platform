@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     resources :issues, only: [:new, :create], controller: 'positions/issues'
   end
 
+  resources :supports, only: [] do
+    member { patch :toggle_subscription }
+  end
+
   get 'complete_profile', to: 'profiles#edit'
 
   root 'static_pages#landing_page'
