@@ -2,6 +2,8 @@ class Positions::SupportsController < ApplicationController
   before_action :authenticate_user!, :authorize_user!
   before_action :validate_update!, only: :update
 
+  after_action :notify_shifted, only: :update
+
   def create
     support = Support.create(position: @position, membership: @membership)
     if support.save
@@ -23,10 +25,8 @@ class Positions::SupportsController < ApplicationController
   end
 
   def update
-    old_position = @support.position
+    @old_position = @support.position
     if @support.update(position: @position)
-      SupportNotifications.new(**base_notification_params, old_position: old_position)
-        .notify_shifted!
       flash[:notice] = 'Support Shifted'
     else
       flash[:alert] = @support.errors.full_messages.to_sentence
@@ -44,6 +44,13 @@ class Positions::SupportsController < ApplicationController
     return if @group.confirmed_memberships.include? @membership
 
     redirect_to root_path, alert: 'Not able to interact with this group.'
+  end
+
+  def notify_shifted
+    return unless flash[:notice].present?
+
+    SupportNotifications.new(**base_notification_params, old_position: @old_position)
+      .notify_shifted!
   end
 
   def validate_update!
