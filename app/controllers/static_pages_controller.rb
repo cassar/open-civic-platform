@@ -1,7 +1,13 @@
 class StaticPagesController < ApplicationController
-  def landing_page
+  before_action :check_authenticated!
+
+  def landing; end
+
+  private
+
+  def check_authenticated!
     return unless user_signed_in?
 
-    redirect_to groups_path
+    redirect_to home_path
   end
 end

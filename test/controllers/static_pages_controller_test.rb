@@ -7,4 +7,10 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'logo'
     assert_select '.options'
   end
+
+  test 'landing page redirected if authenticated' do
+    sign_in users(:one)
+    get root_url
+    assert_redirected_to home_url
+  end
 end

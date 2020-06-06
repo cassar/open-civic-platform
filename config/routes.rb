@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :invitations, only: [:update, :destroy]
   resources :profiles, only: [:edit, :update]
 
-  resources :groups, except: :destroy do
+  resources :groups, except: [:index, :destroy] do
     resources :invitations, only: [:new, :create], controller: 'groups/invitations'
     resources :issues, only: [:show, :new, :create], controller: 'groups/issues'
   end
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   end
 
   get 'complete_profile', to: 'profiles#edit'
+  get 'home', to: 'profiles#show'
 
-  root 'static_pages#landing_page'
+  root 'static_pages#landing'
 end

@@ -3,12 +3,6 @@ class GroupsController < ApplicationController
   before_action :authorize_user!, only: %i[edit update]
   before_action :authorize_user_show!, only: :show
 
-  def index
-    @profile = current_user.profile
-    @memberships = current_user.confirmed_memberships.preload(:group)
-    @invitations = current_user.invitations.preload(:group)
-  end
-
   def show
     @membership = current_user.memberships.find_by group: @group
     @memberships = group.confirmed_memberships.preload(:profile)

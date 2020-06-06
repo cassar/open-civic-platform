@@ -6,6 +6,11 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
   end
 
+  test 'should get home (show)' do
+    get home_url
+    assert_response :success
+  end
+
   test 'should get edit' do
     @profile.update name: nil
     get root_url

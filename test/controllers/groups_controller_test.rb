@@ -6,11 +6,6 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
   end
 
-  test 'should get index' do
-    get groups_url
-    assert_response :success
-  end
-
   test 'should get show' do
     get group_url @group
     assert_response :success
