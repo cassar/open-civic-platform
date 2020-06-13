@@ -35,4 +35,10 @@ class GroupTest < ActiveSupport::TestCase
   test 'group validations' do
     assert_not @group.update(name: nil)
   end
+
+  test 'generate identifier callback' do
+    group = Group.new(name: 'Big Bosses')
+    group.validate
+    assert group.identifier == 'big_bosses'
+  end
 end

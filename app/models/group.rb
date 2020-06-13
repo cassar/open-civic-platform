@@ -14,5 +14,17 @@ class Group < ApplicationRecord
   has_many :invitations, -> { invited }, class_name: 'Membership'
   has_many :invited_profiles, through: :invitations, source: :profile
 
-  validates :name, presence: true
+  validates :name, :identifier, uniqueness: true, presence: true
+
+  before_validation :generate_identifier
+
+  def to_param
+    identifier
+  end
+
+  private
+
+  def generate_identifier
+    self.identifier = name&.gsub(' ', '_')&.gsub(/\W/, '')&.downcase
+  end
 end

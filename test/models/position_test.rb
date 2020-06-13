@@ -27,4 +27,10 @@ class PositionTest < ActiveSupport::TestCase
   test 'position validations' do
     assert_not @position.update name: nil
   end
+
+  test 'generate identifier callback' do
+    position = Position.new(name: 'I agree')
+    position.validate
+    assert position.identifier == 'i_agree'
+  end
 end

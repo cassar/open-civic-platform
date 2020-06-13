@@ -7,7 +7,9 @@
 one:
   id: 1
   name: Group1
+  identifier: group1
 
 two:
   id: 2
   name: Group2
+  identifier: group2
