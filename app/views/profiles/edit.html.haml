@@ -1,9 +1,0 @@
-- content_for :title, 'Complete Your Profile'
-%h1= yield :title
-%section
-  = form_for @profile do |f|
-    .form-group
-      = f.label :name
-      = f.text_field :name, class: 'form-control'
-    .actions.form-group
-      = f.submit nil, class: 'btn btn-primary'
