@@ -35,7 +35,9 @@ nouns = ['Golfers', 'Readers', 'Livers', 'People', 'Nobodies']
   end
 
   3.times do |issue_number|
-    issue = group.issues.create(name: "Issue #{issue_number}")
+    issue = group.issues.create(name: "#{Faker::Quote.famous_last_words} #{issue_number}")
+
+    return unless issue.persisted?
 
     position = issue.positions.create(name: 'Position 1', outline: Faker::Lorem.paragraph)
     position.supports.create(

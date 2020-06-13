@@ -7,7 +7,7 @@ class Groups::IssuesController < GroupsController
 
   def show
     @membership = current_user.memberships.find_by group: @group
-    @issue = Issue.find(params[:id])
+    @issue = Issue.find_by_identifier(params[:id])
     @position = @issue.position
     @positions = @issue.positions.preload(:supports)
     @support = @issue.supports.find_by(membership: @membership)

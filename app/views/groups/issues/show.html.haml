@@ -3,7 +3,7 @@
 - if @position.present?
   %p
     This Issue follows on from the Position:
-    = link_to @position.name, issue_position_path(@position.issue_id, @position)
+    = link_to @position.name, issue_position_path(@position.issue, @position)
 %section
   - if @membership.confirmed?
     - if @support.present?

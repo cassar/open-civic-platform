@@ -7,5 +7,17 @@ class Issue < ApplicationRecord
   has_many :subscribed_supports, -> { subscribed }, through: :positions, source: :supports
   has_many :subscribed_users, through: :subscribed_supports, source: :user
 
-  validates :name, presence: true
+  validates :name, :identifier, uniqueness: true, presence: true
+
+  before_validation :generate_identifier
+
+  def to_param
+    identifier
+  end
+
+  private
+
+  def generate_identifier
+    self.identifier = name&.gsub(' ', '_')&.gsub(/\W/, '')&.downcase
+  end
 end

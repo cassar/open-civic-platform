@@ -60,7 +60,7 @@ class Issues::PositionsController < ApplicationController
   end
 
   def issue
-    @issue ||= Issue.find params[:issue_id]
+    @issue ||= Issue.find_by_identifier params[:issue_id]
   end
 
   def group
