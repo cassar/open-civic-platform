@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_13_000800) do
+ActiveRecord::Schema.define(version: 2020_06_13_093421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 2020_06_13_000800) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "identifier"
+    t.index ["identifier"], name: "index_groups_on_identifier"
   end
 
   create_table "issues", force: :cascade do |t|
-    t.integer "group_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,11 +52,12 @@ ActiveRecord::Schema.define(version: 2020_06_13_000800) do
   end
 
   create_table "positions", force: :cascade do |t|
-    t.integer "issue_id"
     t.string "name"
     t.text "outline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "identifier"
+    t.index ["identifier"], name: "index_positions_on_identifier"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -67,12 +69,22 @@ ActiveRecord::Schema.define(version: 2020_06_13_000800) do
     t.index ["userable_type", "userable_id"], name: "index_profiles_on_userable_type_and_userable_id"
   end
 
+  create_table "submissions", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "issue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "supports", force: :cascade do |t|
-    t.integer "membership_id"
     t.integer "position_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "subscribed"
+    t.integer "issue_id"
+    t.integer "profile_id"
+    t.index ["issue_id"], name: "index_supports_on_issue_id"
+    t.index ["profile_id"], name: "index_supports_on_profile_id"
     t.index ["subscribed"], name: "index_supports_on_subscribed"
   end
 

@@ -2,14 +2,12 @@
 
 one:
   id: 1
-  issue_id: 1
   name: MyString1
   outline: MyText
   identifier: mystring1
 
 two:
   id: 2
-  issue_id: 1
   name: MyString2
   outline: MyText
   identifier: mystring2

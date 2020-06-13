@@ -2,11 +2,14 @@
 
 one:
   id: 1
-  membership_id: 1
+  profile_id: 1
   position_id: 1
+  issue_id: 1
   subscribed: true
 
 two:
   id: 2
-  membership_id: 4 
+  profile_id: 4
   position_id: 1
+  issue_id: 1
+  subscribed:

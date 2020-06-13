@@ -7,19 +7,11 @@ class MembershipTest < ActiveSupport::TestCase
     @group = Group.first
     @confirmed = @membership
     @invited = Membership.second
-    @support = Support.first
-    @issue = Issue.first
-    @support = Support.first
   end
 
   test 'membership associations' do
     assert @membership.profile == @profile
     assert @membership.group == @group
-    assert @membership.supports.include? @support
-    assert @membership.issues_engaged.include? @issue
-    assert @membership.supports.include? @support
-    @membership.destroy
-    assert_raises(ActiveRecord::RecordNotFound) { @support.reload }
   end
 
   test 'membership scopes' do

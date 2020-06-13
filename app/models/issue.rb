@@ -1,11 +1,10 @@
 class Issue < ApplicationRecord
-  belongs_to :group
   belongs_to :position, optional: true
+  has_many :supports, dependent: :destroy
+  has_many :positions, through: :supports
 
-  has_many :positions, dependent: :destroy
-  has_many :supports, through: :positions
-  has_many :subscribed_supports, -> { subscribed }, through: :positions, source: :supports
-  has_many :subscribed_users, through: :subscribed_supports, source: :user
+  has_many :submissisons
+  has_many :groups, through: :submissions
 
   validates :name, :identifier, uniqueness: true, presence: true
 

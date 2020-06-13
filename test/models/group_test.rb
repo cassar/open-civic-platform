@@ -6,17 +6,16 @@ class GroupTest < ActiveSupport::TestCase
     @membership = Membership.first
     @profile = Profile.first
     @user = User.first
-    @issue = Issue.first
     @confirmed_membership = @membership
     @confirmed_profile = @profile
     @invitation = Membership.second
     @invited_profile = @invitation.profile
+    @submission = submissions(:one)
   end
 
   test 'group associations' do
     assert @group.memberships.include? @membership
     assert @group.profiles.include? @profile
-    assert @group.issues.include? @issue
     assert @group.confirmed_memberships.include? @confirmed_membership
     assert @group.confirmed_subscribed_memberships.include? @confirmed_membership
     assert @group.confirmed_subscribed_memberships.exclude? memberships(:four)
@@ -27,9 +26,9 @@ class GroupTest < ActiveSupport::TestCase
     assert @group.confirmed_subscribed_users.exclude? users(:three)
     assert @group.invitations.include? @invitation
     assert @group.invited_profiles.include? @invited_profile
+    assert @group.submissions.include? @submission
     @group.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @membership.reload }
-    assert_raises(ActiveRecord::RecordNotFound) { @issue.reload }
   end
 
   test 'group validations' do

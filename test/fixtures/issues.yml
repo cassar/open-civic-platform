@@ -2,13 +2,11 @@
 
 one:
   id: 1
-  group_id: 1
   name: MyString1
   position_id: 2
   identifier: mystring1
 
 two:
   id: 2
-  group_id: 1
   name: MyString2
   identifier: mystring2
