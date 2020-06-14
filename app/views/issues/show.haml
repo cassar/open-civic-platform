@@ -1,0 +1,11 @@
+- content_for :title, @issue.name
+%h1= yield :title
+%section
+  - if @positions.present?
+    .tile-container
+      - @positions.each do |position|
+        = link_to '#', class: 'tile' do
+          = position.name
+  - else
+    %p This issue does not have any positions declared
+  = link_to 'Back to Home', root_path

@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
   get 'home', to: 'profiles#show'
 
-  root 'static_pages#landing'
+  root 'issues#index'
 end
