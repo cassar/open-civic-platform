@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 9b0c36987067f9db792dbb30e4d4322bb3a66157
+  branch: master
+  specs:
+    faker (2.12.0)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -316,7 +324,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   coffee-rails (~> 5)
   devise
-  faker
+  faker!
   figaro
   guard
   guard-bundler
