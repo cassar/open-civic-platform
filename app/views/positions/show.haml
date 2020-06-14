@@ -1,0 +1,9 @@
+- content_for :title, @position.name
+%h1= yield :title
+%p= @position.outline
+%p
+  Positon on Issue:
+  %strong
+    #{@issue.name}
+%nav
+  = link_to 'Back to Issue', issue_path(@issue)
