@@ -2,11 +2,12 @@
 %landing
   %logo Open Civic Platform
 .container
-  %h2 Issues Being Discussed
+  %p
+    %strong Issues Being Discussed
   - if @issues.present?
     .tile-container
       - @issues.each do |issue|
         = link_to issue_path(issue), class: 'tile' do
-          %p= issue.name
+          = issue.name
   - else
     %p There are no issues currently being discussed
