@@ -1,13 +1,6 @@
 - content_for :title, 'Home'
 %landing
   %logo Open Civic Platform
-  .options
-    - if user_signed_in?
-      = link_to 'Profile', profile_path
-      = link_to 'Sign Out', sign_out_path
-    - else
-      = link_to 'Sign In', sign_in_path
-      = link_to 'Sign Up', sign_up_path
 .container
   %p
     %strong Issues Being Discussed

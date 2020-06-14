@@ -1,12 +1,13 @@
 %nav.navbar.sticky-top.navbar-light.bg-light
   = link_to 'Open Civic Platform', root_path, class: 'navbar-brand'
-  %ul.navbar-nav
-    - if user_signed_in?
-      %li.nav-item
-        = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
-    - else
-      %li.nav-item
-        - if params['controller'] == 'devise/sessions'
-          = link_to 'Sign Up', sign_up_path, class: 'nav-link'
-        - else
-          = link_to 'Sign In', sign_in_path, class: 'nav-link'
+  .btn-group{role: "group"}
+    %button#btnGroupDrop1.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+      Account
+    .dropdown-menu{"aria-labelledby" => "btnGroupDrop1"}
+      - if user_signed_in?
+        = link_to 'Profile', profile_path, class: 'dropdown-item'
+        = link_to 'Email/Password', account_path, class: 'dropdown-item'
+        = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+      - else
+        = link_to 'Sign In', sign_in_path, class: 'dropdown-item'
+        = link_to 'Sign Up', sign_up_path, class: 'dropdown-item'
