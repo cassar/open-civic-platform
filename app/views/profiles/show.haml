@@ -1,2 +1,13 @@
 - content_for :title, 'Profile'
 %h1= @profile.name
+.container
+  %p
+    %strong Your Issues
+  %hr
+  - if @supporting_issues.present?
+    .tile-container
+      - @supporting_issues.each do |issue|
+        = link_to profile_issue_path(issue), class: 'tile' do
+          = issue.name
+  - else
+    %p You are not currently particpating in any issues

@@ -14,5 +14,9 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'profiles#show'
 
+  namespace :profile do
+    resources :issues, only: :show
+  end
+
   root 'issues#index'
 end
