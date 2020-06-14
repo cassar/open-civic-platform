@@ -11,3 +11,9 @@
           = issue.name
   - else
     %p You are not currently particpating in any issues
+  %p
+    %strong Actions
+  %hr
+  .tile-container
+    = link_to new_profile_issue_path, class: 'tile' do
+      = 'Add Issue'

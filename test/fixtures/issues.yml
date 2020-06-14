@@ -9,3 +9,8 @@ two:
   id: 2
   name: MyString2
   identifier: mystring2
+
+three:
+  id: 3
+  name: MyString3
+  identifier: mystring3
