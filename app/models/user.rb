@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :trackable, :validatable, :timeoutable, :recoverable
 
   has_one :profile, as: :userable, dependent: :destroy
-  has_many :supports, through: :profile
+  has_many :adoptions, through: :profile
+  has_many :supports, through: :adoptions
+  has_many :positions, through: :supports
 
   has_many :memberships, through: :profile
   has_many :groups, through: :memberships

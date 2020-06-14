@@ -3,6 +3,7 @@ require 'test_helper'
 class SupportTest < ActiveSupport::TestCase
   setup do
     @support = Support.first
+    @adoption = adoptions(:one)
     @position = Position.first
     @issue = Issue.first
     @profile = Profile.first
@@ -10,6 +11,7 @@ class SupportTest < ActiveSupport::TestCase
   end
 
   test 'support associations' do
+    assert @support.adoption == @adoption
     assert @support.position == @position
     assert @support.issue == @issue
     assert @support.profile == @profile

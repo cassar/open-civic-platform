@@ -3,8 +3,7 @@ class Profile::IssuesController < ApplicationController
 
   def show
     @issue = Issue.find_by_identifier params[:id]
-    position_ids = current_user.supports.where(issue: @issue).pluck(:position_id)
-    @positions = Position.where(id: position_ids)
+    @positions = current_user.positions.where_issue(@issue)
     render 'issues/show'
   end
 end

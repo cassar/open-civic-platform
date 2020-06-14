@@ -6,6 +6,8 @@ class Profile < ApplicationRecord
   has_many :invitations, -> { invited }, class_name: 'Membership', dependent: :destroy
   has_many :groups, through: :confirmed_memberships
 
-  has_many :supports, dependent: :destroy
+  has_many :adoptions, dependent: :destroy
+  has_many :issues_adopted, through: :adoptions, source: :issue
+  has_many :supports, through: :adoptions
   has_many :issues_supporting, through: :supports, source: :issue
 end

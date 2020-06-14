@@ -1,5 +1,6 @@
 class Issue < ApplicationRecord
-  has_many :supports, dependent: :destroy
+  has_many :adoptions, dependent: :destroy
+  has_many :supports, through: :adoptions
   has_many :positions, through: :supports
   has_many :submissisons
   has_many :groups, through: :submissions

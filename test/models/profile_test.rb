@@ -11,6 +11,7 @@ class ProfileTest < ActiveSupport::TestCase
     @confirmed_membership = @membership
     @invitation = Membership.third
     @group = Group.first
+    @adoption = adoptions(:one)
     @support = supports(:one)
     @issue = issues(:one)
   end
@@ -22,10 +23,12 @@ class ProfileTest < ActiveSupport::TestCase
     assert @profile.confirmed_memberships.include? @confirmed_membership
     assert @profile.invitations.include? @invitation
     assert @profile.groups.include? @group
+    assert @profile.adoptions.include? @adoption
+    assert @profile.issues_adopted.include? @issue
     assert @profile.supports.include? @support
     assert @profile.issues_supporting.include? @issue
     @profile.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @membership.reload }
-    assert_raises(ActiveRecord::RecordNotFound) { @support.reload }
+    assert_raises(ActiveRecord::RecordNotFound) { @adoption.reload }
   end
 end

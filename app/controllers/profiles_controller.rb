@@ -3,6 +3,6 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = current_user.profile
-    @supporting_issues = @profile.issues_supporting
+    @supporting_issues = @profile.issues_adopted
   end
 end

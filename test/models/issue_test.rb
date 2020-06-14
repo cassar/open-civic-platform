@@ -4,14 +4,16 @@ class IssueTest < ActiveSupport::TestCase
   setup do
     @issue = Issue.first
     @position = Position.first
+    @adoption = adoptions(:one)
     @support = Support.first
   end
 
   test 'issue associations' do
+    assert @issue.adoptions.include? @adoption
     assert @issue.supports.include? @support
     assert @issue.positions.include? @position
     @issue.destroy
-    assert_raises(ActiveRecord::RecordNotFound) { @support.reload }
+    assert_raises(ActiveRecord::RecordNotFound) { @adoption.reload }
   end
 
   test 'issue validations' do

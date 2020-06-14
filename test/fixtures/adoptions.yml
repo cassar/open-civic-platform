@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  profile_id: 1
+  issue_id: 1
+
+two:
+  id: 2
+  profile_id: 4
+  issue_id: 1
