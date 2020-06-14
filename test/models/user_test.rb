@@ -8,6 +8,7 @@ class UserTest < ActiveSupport::TestCase
     @group = Group.first
     @confirmed_membership = @membership
     @invitation = Membership.third
+    @support = supports(:one)
   end
 
   test 'user associations' do
@@ -16,6 +17,7 @@ class UserTest < ActiveSupport::TestCase
     assert @user.groups.include? @group
     assert @user.confirmed_memberships.include? @confirmed_membership
     assert @user.invitations.include? @invitation
+    assert @user.supports.include? @support
     @user.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @profile.reload }
   end
