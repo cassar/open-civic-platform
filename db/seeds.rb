@@ -8,24 +8,16 @@ admin = User.create(email: ENV['SEED_EMAIL'],
 
 admin.profile.update! name: ENV['SEED_NAME']
 
-first_names = ['Tim', 'Kate', 'Watson', 'Zhang', 'Maria', 'Omar', 'Ezara']
-last_names = ['Kumar', 'Huang', 'Zammit', 'Tyrel', 'Conner', 'Drizen']
-
 10.times do |number|
-  first_name = first_names.sample
-  last_name = last_names.sample
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
   user = User.create(email: "#{first_name}_#{last_name}#{number}@example.com",
     password: Devise.friendly_token[0, 20])
   user.profile.update! name: "#{first_name} #{last_name}"
 end
 
-adjectives = ['Tame', 'Big', 'Loud', 'Poor', 'Vibrant', 'Stoic']
-nouns = ['Golfers', 'Readers', 'Livers', 'People', 'Nobodies']
-
 5.times do |number|
-  adjective = adjectives.sample
-  noun = nouns.sample
-  group = Group.create(name: "#{adjective} #{noun} #{number}")
+  group = Group.create(name: "#{Faker::Book.unique.title} Club")
   Profile.all.take(10).each do |profile|
     group.memberships.create(
       profile: profile,
@@ -33,22 +25,24 @@ nouns = ['Golfers', 'Readers', 'Livers', 'People', 'Nobodies']
       subscribed: [true, false, nil].sample
     )
   end
+end
 
-  3.times do |issue_number|
-    issue = group.issues.create(name: "#{Faker::Quote.famous_last_words} #{issue_number}")
+20.times do
+  Issue.create name: "#{Faker::Quote.famous_last_words}?"
+end
 
-    return unless issue.persisted?
+20.times do
+  Position.create name: Faker::Movie.title, outline: Faker::Movie.quote
+end
 
-    position = issue.positions.create(name: 'Position 1', outline: Faker::Lorem.paragraph)
-    position.supports.create(
-      membership: group.confirmed_memberships.first,
-      subscribed: [true, false, nil].sample
-    )
+profiles = Profile.all
+issues = Issue.all
+positions = Position.all
 
-    position = issue.positions.create(name: 'Position 2', outline: Faker::Lorem.paragraph)
-    position.supports.create(
-      membership: group.confirmed_memberships.last,
-      subscribed: [true, false, nil].sample
-    )
-  end
+100.times do
+  Support.create(
+    profile: profiles.sample,
+    issue: issues.sample,
+    position: positions.sample
+  )
 end
