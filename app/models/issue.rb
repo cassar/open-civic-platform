@@ -1,8 +1,6 @@
 class Issue < ApplicationRecord
-  belongs_to :position, optional: true
   has_many :supports, dependent: :destroy
   has_many :positions, through: :supports
-
   has_many :submissisons
   has_many :groups, through: :submissions
 

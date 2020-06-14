@@ -3,7 +3,6 @@
 one:
   id: 1
   name: MyString1
-  position_id: 2
   identifier: mystring1
 
 two:

@@ -4,12 +4,10 @@ class IssueTest < ActiveSupport::TestCase
   setup do
     @issue = Issue.first
     @position = Position.first
-    @parent_position = positions(:two)
     @support = Support.first
   end
 
   test 'issue associations' do
-    assert @issue.position == @parent_position
     assert @issue.supports.include? @support
     assert @issue.positions.include? @position
     @issue.destroy
