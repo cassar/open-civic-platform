@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :positions, only: :show
   end
 
-  get 'home', to: 'profiles#show'
+  get 'profile', to: 'profiles#show'
 
   root 'issues#index'
 end

@@ -5,38 +5,27 @@
   color: black;
 }
 
+.options > a:link, .options > a:visited, .options > a:hover, .options > a:active {
+  text-decoration: none;
+  color: black;
+}
+
 .flashes {
   padding: 1%;
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-device-width: 320px) and (min-width : 320px) {
-  .options {
-    display: grid;
-  }
-
-  .landing-links {
-    font-size: 10vw;
-    line-height: 2;
-    margin-top: 6vh;
-  }
-
-  .landing-links:link, .landing-links:visited, .landing-links:hover, .landing-links:active {
-    text-decoration: none;
-    color: black;
+  .options > a {
+    font-size: 6vw;
+    margin: 4vw;
   }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-device-width: 480px) and (min-width : 480px) {
-  .options {
-    display: block;
-  }
-
-  .landing-links {
-    font-size: 6vw;
-    margin-left: 4vw;
-    margin-right: 4vw;
+  .options > a {
+    font-size: 3vw;
   }
 }
 
