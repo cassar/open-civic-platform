@@ -9,3 +9,17 @@
         = position.name
 - else
   %p This issue does not have any positions declared
+%p
+  %strong Actions
+%hr
+.tile-container
+  - if @adoption.present?
+    - if params[:controller] == 'issues'
+      = link_to profile_issue_path(@issue), class: 'tile' do
+        = 'Profile Issue'
+    - else
+      = link_to issue_path(@issue), class: 'tile' do
+        = 'Public Issue'
+  - else
+    = link_to profile_issues_path(issue: {name: @issue.name}), method: :post, class: 'tile' do
+      = 'Adopt Issue'

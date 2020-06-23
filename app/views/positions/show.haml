@@ -5,5 +5,9 @@
   Positon on Issue:
   %strong
     #{@issue.name}
-%nav
-  = link_to 'Back to Issue', issue_path(@issue)
+%p
+  %strong Actions
+%hr
+.tile-container
+  = link_to issue_path(@issue), class: 'tile' do
+    = 'Issue'
