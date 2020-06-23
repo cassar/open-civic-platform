@@ -1,0 +1,16 @@
+- content_for :title, @position.name
+%h1= yield :title
+%p= @position.outline
+%p
+  Positon on Issue:
+  %strong
+    #{@issue.name}
+%p
+  %strong Actions
+%hr
+.tile-container
+  = link_to profile_issue_path(@issue), class: 'tile' do
+    = 'Back to Issue'
+  = link_to issue_position_path(@issue, @position), class: 'tile' do
+    = 'Public Position'
+  = render partial: 'layouts/authentication_tiles'

@@ -5,7 +5,7 @@
     %strong Registered Positions
   .tile-container
     - @positions.each do |position|
-      = link_to issue_position_path(@issue, position), class: 'tile' do
+      = link_to profile_issue_position_path(@issue, position), class: 'tile' do
         = position.name
 - else
   %p This issue does not have any positions declared
@@ -13,10 +13,8 @@
   %strong Actions
 %hr
 .tile-container
-  - if @adoption.present?
-    = link_to profile_issue_path(@issue), class: 'tile' do
-      = 'Profile Issue'
-  - else
-    = link_to profile_issues_path(issue: {name: @issue.name}), method: :post, class: 'tile' do
-      = 'Adopt Issue'
+  = link_to new_profile_issue_position_path(@issue), class: 'tile' do
+    = 'Add Position'
+  = link_to issue_path(@issue), class: 'tile' do
+    = 'Go to Public Issue'
   = render partial: 'layouts/authentication_tiles'

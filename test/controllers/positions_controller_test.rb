@@ -5,4 +5,10 @@ class PositionsControllerTest < ActionDispatch::IntegrationTest
     get issue_position_url(issues(:one), positions(:one))
     assert_response :success
   end
+
+  test 'get show with authenticated user' do
+    sign_in users(:one)
+    get issue_position_url(issues(:one), positions(:one))
+    assert_response :success
+  end
 end

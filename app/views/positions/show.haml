@@ -9,6 +9,12 @@
   %strong Actions
 %hr
 .tile-container
+  - if @support.present?
+    = link_to profile_issue_position_path(@issue, @position), class: 'tile' do
+      = 'Profile Position'
+  - else
+    = link_to profile_issue_position_supports_path(@issue, @position), method: :post, class: 'tile' do
+      = 'Support Position'
   = link_to issue_path(@issue), class: 'tile' do
-    = 'Issue'
+    = 'Back to Issue'
   = render partial: 'layouts/authentication_tiles'
