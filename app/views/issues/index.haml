@@ -15,15 +15,4 @@
     %strong Actions
   %hr
   .tile-container
-    - if user_signed_in?
-      = link_to profile_path, class: 'tile' do
-        = 'Profile'
-      = link_to account_path, class: 'tile' do
-        = 'Email/Password'
-      = link_to destroy_user_session_path, method: :delete, class: 'tile' do
-        = 'Sign Out'
-    - else
-      = link_to sign_in_path, class: 'tile' do
-        = 'Sign In'
-      = link_to sign_up_path, class: 'tile' do
-        = 'Sign Up'
+    = render partial: 'layouts/authentication_tiles'
