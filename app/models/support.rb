@@ -8,4 +8,6 @@ class Support < ApplicationRecord
   has_one :user, through: :profile, source: :userable, source_type: 'User'
 
   scope :subscribed, -> { where subscribed: true }
+
+  validates :adoption, uniqueness: { scope: :position, message: 'Position already supported' }
 end

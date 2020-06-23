@@ -21,5 +21,13 @@ class SupportTest < ActiveSupport::TestCase
   test 'support scopes' do
     assert Support.subscribed.include? @support
     assert Support.subscribed.exclude? supports(:two)
+
+  test 'validations' do
+    assert_raises(ActiveRecord::RecordInvalid) do
+      Support.create!(
+        adoption: adoptions(:one),
+        position: positions(:one)
+      )
+    end
   end
 end
