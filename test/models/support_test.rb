@@ -10,7 +10,7 @@ class SupportTest < ActiveSupport::TestCase
     @user = User.first
   end
 
-  test 'support associations' do
+  test 'associations' do
     assert @support.adoption == @adoption
     assert @support.position == @position
     assert @support.issue == @issue
@@ -18,9 +18,11 @@ class SupportTest < ActiveSupport::TestCase
     assert @support.user == @user
   end
 
-  test 'support scopes' do
+  test 'scopes' do
     assert Support.subscribed.include? @support
     assert Support.subscribed.exclude? supports(:two)
+    assert Support.where_issue(@issue).include? @support
+  end
 
   test 'validations' do
     assert_raises(ActiveRecord::RecordInvalid) do

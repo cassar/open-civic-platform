@@ -9,5 +9,9 @@ class Support < ApplicationRecord
 
   scope :subscribed, -> { where subscribed: true }
 
+  scope :where_issue, lambda { |issue|
+    joins(:adoption).where(adoptions: {issue: issue})
+  }
+
   validates :adoption, uniqueness: { scope: :position, message: 'Position already supported' }
 end
