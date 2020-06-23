@@ -28,7 +28,7 @@ end
 end
 
 20.times do
-  Issue.create name: "#{Faker::Quote.famous_last_words}?"
+  Issue.create name: "#{Faker::Quote.famous_last_words.gsub('.', '?')}"
 end
 
 20.times do
