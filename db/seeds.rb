@@ -27,22 +27,23 @@ end
   end
 end
 
-20.times do
-  Issue.create name: "#{Faker::Quote.famous_last_words.gsub('.', '?')}"
+def create_supports(issues, positions)
+  profiles = Profile.all
+  100.times do
+    Support.create(
+      profile: profiles.sample,
+      issue: issues.sample,
+      position: positions.sample
+    )
+  end
 end
 
-20.times do
-  Position.create name: Faker::Movie.title, outline: Faker::Movie.quote
+issues = 100.times.map do
+  Issue.create name: "What is #{Faker::Games::Pokemon.unique.name}'s best move?"
 end
 
-profiles = Profile.all
-issues = Issue.all
-positions = Position.all
-
-100.times do
-  Support.create(
-    profile: profiles.sample,
-    issue: issues.sample,
-    position: positions.sample
-  )
+positions = 50.times.map do
+  Position.create(name: Faker::Games::Pokemon.unique.move)
 end
+
+create_supports(issues, positions)
