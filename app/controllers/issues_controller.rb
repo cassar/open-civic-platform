@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   def index
-    @issues = Issue.all
+    @issues = Issue.joins(:supports).uniq
   end
 
   def show
