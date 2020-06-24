@@ -4,7 +4,7 @@ class Position < ApplicationRecord
   has_many :supporting_profiles, through: :adoptions, source: :profile
 
   scope :where_issue, lambda { |issue|
-    joins(:adoptions).where(adoptions: {issue: issue}).uniq
+    joins(:adoptions).where(adoptions: {issue: issue}).distinct
   }
 
   validates :name, :identifier, uniqueness: true, presence: true
