@@ -7,6 +7,8 @@ class Support < ApplicationRecord
 
   has_one :user, through: :profile, source: :userable, source_type: 'User'
 
+  has_many :family, through: :adoption, source: :supports
+
   scope :subscribed, -> { where subscribed: true }
 
   scope :where_issue, lambda { |issue|

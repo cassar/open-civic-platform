@@ -16,6 +16,7 @@ class SupportTest < ActiveSupport::TestCase
     assert @support.issue == @issue
     assert @support.profile == @profile
     assert @support.user == @user
+    assert @support.family.include? @support
   end
 
   test 'scopes' do
