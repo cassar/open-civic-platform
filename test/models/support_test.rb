@@ -28,7 +28,8 @@ class SupportTest < ActiveSupport::TestCase
     assert_raises(ActiveRecord::RecordInvalid) do
       Support.create!(
         adoption: adoptions(:one),
-        position: positions(:one)
+        position: positions(:one),
+        preference: 1
       )
     end
   end

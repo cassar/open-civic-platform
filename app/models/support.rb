@@ -14,4 +14,6 @@ class Support < ApplicationRecord
   }
 
   validates :adoption, uniqueness: { scope: :position, message: 'Position already supported' }
+
+  validates :preference, presence: true
 end

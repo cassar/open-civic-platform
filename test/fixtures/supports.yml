@@ -5,9 +5,11 @@ one:
   position_id: 1
   adoption_id: 1
   subscribed: true
+  preference: 1
 
 two:
   id: 2
   position_id: 1
   adoption_id: 2
   subscribed:
+  preference: 1

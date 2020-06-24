@@ -30,10 +30,14 @@ end
 def create_supports(issues, positions)
   profiles = Profile.all
   100.times do
-    Support.create(
+    adoption = Adoption.find_or_create_by(
       profile: profiles.sample,
-      issue: issues.sample,
-      position: positions.sample
+      issue: issues.sample
+    )
+    Support.create(
+      adoption: adoption,
+      position: positions.sample,
+      preference: (adoption.supports.count + 1)
     )
   end
 end

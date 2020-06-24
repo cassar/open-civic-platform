@@ -34,12 +34,14 @@ class Profile::PositionsController < ApplicationController
   def support_position
     return unless flash[:notice].present?
 
+    adoption = Adoption.find_or_create_by(
+      profile: current_user.profile,
+      issue: @issue
+    )
     Support.create(
       position: @position,
-      adoption: Adoption.find_or_create_by(
-        profile: current_user.profile,
-        issue: @issue
-      )
+      adoption: adoption,
+      preference: (adoption.supports.count + 1)
     )
   end
 end
