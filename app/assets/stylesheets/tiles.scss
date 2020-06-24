@@ -17,6 +17,11 @@
   color: black;
 }
 
+.tile a:link, .tile a:visited, .tile a:hover, .tile a:active {
+  text-decoration: none;
+  color: black;
+}
+
 /* Custom, iPhone Retina */
 @media only screen and (min-device-width: 320px) and (min-width : 320px) {
   .tile-container {

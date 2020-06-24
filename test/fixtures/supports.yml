@@ -13,3 +13,17 @@ two:
   adoption_id: 2
   subscribed:
   preference: 1
+
+three:
+  id: 3
+  position_id: 2
+  adoption_id: 2
+  subscribed:
+  preference: 3
+
+four:
+  id: 4
+  position_id: 3
+  adoption_id: 2
+  subscribed:
+  preference: 2

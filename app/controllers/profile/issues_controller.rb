@@ -3,7 +3,9 @@ class Profile::IssuesController < ApplicationController
 
   def show
     @issue = Issue.find_by_identifier params[:id]
-    @positions = current_user.positions.where_issue @issue
+    @supports = current_user.supports.where_issue(@issue)
+      .order(:preference)
+      .preload(:position)
   end
 
   def new

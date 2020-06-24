@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         resources :supports, only: :create
       end
     end
+    resources :preferences, only: :update
   end
 
   root 'issues#index'

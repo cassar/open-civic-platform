@@ -11,3 +11,9 @@ two:
   name: MyString2
   outline: MyText
   identifier: mystring2
+
+three:
+  id: 3
+  name: MyString3
+  outline: MyText
+  identifier: mystring3

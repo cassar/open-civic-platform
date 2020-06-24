@@ -1,12 +1,22 @@
 - content_for :title, @issue.name
 %h1= yield :title
-- if @positions.present?
+- if @supports.present?
   %p
     %strong Registered Positions
   .tile-container
-    - @positions.each do |position|
-      = link_to profile_issue_position_path(@issue, position), class: 'tile' do
-        = position.name
+    - @supports.each do |support|
+      .tile
+        %strong
+          = link_to '-', profile_preference_path(support, preference: support.down_preference), |
+            method: :patch
+        = link_to support.position.name, profile_issue_position_path(@issue, support.position)
+        %strong
+          - if support == @supports.last
+            = link_to '+', profile_preference_path(support, preference: support.first_preference), |
+              method: :patch
+          - else
+            = link_to '+', profile_preference_path(support, preference: support.up_preference), |
+              method: :patch
 - else
   %p This issue does not have any positions declared
 %p
