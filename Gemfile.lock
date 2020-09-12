@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/faker-ruby/faker.git
-  revision: 9b0c36987067f9db792dbb30e4d4322bb3a66157
+  revision: b194dd23bb4cf9f151e6f680e1ea243737d747e1
   branch: master
   specs:
-    faker (2.12.0)
+    faker (2.13.0)
       i18n (>= 1.6, < 2)
 
 GEM
@@ -106,8 +106,6 @@ GEM
       warden (~> 1.2.3)
     erubi (1.9.0)
     execjs (2.7.0)
-    faker (2.13.0)
-      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
