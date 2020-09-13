@@ -6,13 +6,17 @@
   %strong
     #{@issue.name}
 %p
+  Support:
+  %strong
+    - if @support.present?
+      You Support this Position
+    - else
+      You don't Support this Position
+%p
   %strong Actions
 %hr
 .tile-container
-  - if @support.present?
-    = link_to profile_issue_position_path(@issue, @position), class: 'tile' do
-      = 'Profile Position'
-  - else
+  - unless @support.present?
     = link_to profile_issue_position_supports_path(@issue, @position), method: :post, class: 'tile' do
       = 'Support Position'
   = link_to issue_path(@issue), class: 'tile' do
