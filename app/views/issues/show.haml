@@ -2,7 +2,7 @@
 %h1= yield :title
 - if @positions.present?
   %p
-    %strong Registered Positions
+    %strong Positions
   .tile-container
     - @positions.each do |position|
       = link_to issue_position_path(@issue, position), class: 'tile' do
