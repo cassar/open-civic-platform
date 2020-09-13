@@ -15,4 +15,6 @@
     %strong Actions
   %hr
   .tile-container
+    = link_to new_profile_issue_path, class: 'tile' do
+      = 'New Issue'
     = render partial: 'layouts/authentication_tiles'

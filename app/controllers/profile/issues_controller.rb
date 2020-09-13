@@ -26,10 +26,10 @@ class Profile::IssuesController < ApplicationController
 
   def handle_create
     if @issue.persisted? && @adoption.save
-      redirect_to profile_issue_path(@issue),
+      redirect_to issue_path(@issue),
         notice: 'New issue adopted'
     elsif @issue.save && @adoption.save
-      redirect_to profile_issue_path(@issue),
+      redirect_to issue_path(@issue),
         notice: 'New issue created'
     else
       handle_create_error
