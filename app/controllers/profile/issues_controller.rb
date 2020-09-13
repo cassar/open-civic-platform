@@ -2,7 +2,7 @@ class Profile::IssuesController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @issue = Issue.find_by_identifier params[:id]
+    @issue = Issue.find_by_id params[:id]
     @supports = current_user.supports.where_issue(@issue)
       .order(:preference)
       .preload(:position)

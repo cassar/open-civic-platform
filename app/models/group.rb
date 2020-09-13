@@ -19,10 +19,6 @@ class Group < ApplicationRecord
 
   before_validation :generate_identifier
 
-  def to_param
-    identifier
-  end
-
   private
 
   def generate_identifier

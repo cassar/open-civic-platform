@@ -4,7 +4,7 @@ class IssuesController < ApplicationController
   end
 
   def show
-    @issue = Issue.find_by_identifier params[:id]
+    @issue = Issue.find_by_id params[:id]
     @positions = @issue.positions
     return unless user_signed_in?
 

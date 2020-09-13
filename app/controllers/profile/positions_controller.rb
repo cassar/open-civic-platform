@@ -4,17 +4,17 @@ class Profile::PositionsController < ApplicationController
   after_action :support_position, only: :create
 
   def show
-    @issue = Issue.find_by_identifier params[:issue_id]
-    @position = Position.find_by_identifier params[:id]
+    @issue = Issue.find_by_id params[:issue_id]
+    @position = Position.find_by_id params[:id]
   end
 
   def new
-    @issue = Issue.find_by_identifier params[:issue_id]
+    @issue = Issue.find_by_id params[:issue_id]
     @position = Position.new
   end
 
   def create
-    @issue = Issue.find_by_identifier(params[:issue_id])
+    @issue = Issue.find_by_id(params[:issue_id])
     @position = Position.new(position_params)
     if @position.save
       redirect_to profile_issue_path(@issue),

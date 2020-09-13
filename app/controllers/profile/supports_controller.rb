@@ -18,8 +18,8 @@ class Profile::SupportsController < ApplicationController
   end
 
   def records_for_create
-    @issue = Issue.find_by_identifier params[:issue_id]
-    @position = Position.find_by_identifier params[:position_id]
+    @issue = Issue.find_by_id params[:issue_id]
+    @position = Position.find_by_id params[:position_id]
   end
 
   def support
