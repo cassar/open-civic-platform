@@ -17,7 +17,7 @@ class Profile::PositionsController < ApplicationController
     @issue = Issue.find_by_id(params[:issue_id])
     @position = Position.new(position_params)
     if @position.save
-      redirect_to profile_issue_path(@issue),
+      redirect_to issue_path(@issue),
         notice: 'Successfully Created Position'
     else
       flash[:alert] = @position.errors.full_messages.to_sentence

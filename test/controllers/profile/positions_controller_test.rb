@@ -38,7 +38,7 @@ class Profile::PositionsControllerTest < ActionDispatch::IntegrationTest
         }
       end
     end
-    assert_redirected_to profile_issue_path(@issue)
+    assert_redirected_to issue_path(@issue)
   end
 
   test 'should post create fail' do
