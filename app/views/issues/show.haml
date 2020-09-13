@@ -15,7 +15,7 @@
 .tile-container
   - if @adoption.present?
     = link_to profile_issue_path(@issue), class: 'tile' do
-      = 'Profile Issue'
+      = 'Preferences'
     = link_to new_profile_issue_position_path(@issue), class: 'tile' do
       = 'Add Position'
   - else
