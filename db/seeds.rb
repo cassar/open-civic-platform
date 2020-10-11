@@ -3,10 +3,13 @@
 
 require 'faker'
 
-admin = User.create(email: ENV['SEED_EMAIL'],
-            password: 'password', password_confirmation: 'password')
+admin = User.create(
+  email: (ENV['SEED_EMAIL'] || 'admin@open-civic.com'),
+  password: 'password',
+  password_confirmation: 'password'
+)
 
-admin.profile.update! name: ENV['SEED_NAME']
+Profile.new name: (ENV['SEED_NAME'] || 'Admin User'), userable: admin
 
 10.times do |number|
   first_name = Faker::Name.first_name
