@@ -7,8 +7,7 @@
   - if @issues.present?
     .tile-container
       - @issues.each do |issue|
-        = link_to issue_path(issue), class: 'tile' do
-          = issue.name
+        = render 'layouts/tile', url: issue_path(issue), title: issue.name
   - else
     %p There are no issues currently being discussed
   %p

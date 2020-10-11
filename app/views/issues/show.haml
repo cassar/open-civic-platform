@@ -5,8 +5,7 @@
     %strong Links
   .tile-container
     - @thumbnails.each do |thumbnail|
-      = link_to thumbnail.url.to_s, class: 'tile' do
-        = thumbnail.title
+      = render 'layouts/tile', url: thumbnail.url.to_s, title: thumbnail.title
     - if user_signed_in?
       = link_to new_issue_link_path(@issue), class: 'tile' do
         = 'Add Link'
@@ -15,8 +14,7 @@
     %strong Positions
   .tile-container
     - @positions.each do |position|
-      = link_to issue_position_path(@issue, position), class: 'tile' do
-        = position.name
+      = render 'layouts/tile', url: issue_position_path(@issue, position), title: position.name
 - else
   %p This issue does not have any positions declared
 %p
