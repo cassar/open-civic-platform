@@ -37,6 +37,8 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 # Use Webpack to manage app-like JavaScript modules in Rails
 gem 'webpacker'
+# Generating image thumbnails from a given URL
+gem 'link_thumbnailer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
