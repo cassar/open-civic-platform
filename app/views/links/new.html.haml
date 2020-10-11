@@ -4,7 +4,7 @@
   = form_for [@issue, @link] do |f|
     .form-group
       = f.label :url
-      = f.text_field :url, class: 'form-control'
+      = f.url_field :url, class: 'form-control'
     .actions.form-group
       = f.submit nil, class: 'btn btn-primary'
   = link_to 'Back to Issue', issue_path(@issue)

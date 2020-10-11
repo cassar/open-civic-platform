@@ -1,5 +1,15 @@
 - content_for :title, @issue.name
 %h1= yield :title
+- if @thumbnails.any? || user_signed_in?
+  %p
+    %strong Links
+  .tile-container
+    - @thumbnails.each do |thumbnail|
+      = link_to thumbnail.url.to_s, class: 'tile' do
+        = thumbnail.title
+    - if user_signed_in?
+      = link_to new_issue_link_path(@issue), class: 'tile' do
+        = 'Add Link'
 - if @positions.present?
   %p
     %strong Positions
