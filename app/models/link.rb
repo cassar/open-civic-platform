@@ -1,4 +1,6 @@
 class Link < ApplicationRecord
+  belongs_to :linkable, polymorphic: true
+
   validate :url_must_be_valid
 
   private
