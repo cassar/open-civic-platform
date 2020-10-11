@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :issues, only: [:index, :show] do
     resources :positions, only: :show
+    resources :links, only: [:new, :create, :destroy]
   end
 
   get 'profile', to: 'profiles#show'
