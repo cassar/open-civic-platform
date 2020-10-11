@@ -12,6 +12,7 @@ class IssueTest < ActiveSupport::TestCase
     assert @issue.adoptions.include? @adoption
     assert @issue.supports.include? @support
     assert @issue.positions.include? @position
+    assert @issue.links.include? links(:stackoverflow)
     @issue.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @adoption.reload }
   end

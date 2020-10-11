@@ -1,1 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+stackoverflow:
+  url: http://stackoverflow.com
+  linkable_id: 1
+  linkable_type: Issue

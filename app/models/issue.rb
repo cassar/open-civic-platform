@@ -4,6 +4,7 @@ class Issue < ApplicationRecord
   has_many :positions, through: :supports
   has_many :submissisons
   has_many :groups, through: :submissions
+  has_many :links, as: :linkable
 
   validates :name, :identifier, uniqueness: true, presence: true
 
