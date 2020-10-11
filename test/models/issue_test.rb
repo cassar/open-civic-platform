@@ -6,15 +6,17 @@ class IssueTest < ActiveSupport::TestCase
     @position = Position.first
     @adoption = adoptions(:one)
     @support = Support.first
+    @link = links(:stackoverflow)
   end
 
   test 'issue associations' do
     assert @issue.adoptions.include? @adoption
     assert @issue.supports.include? @support
     assert @issue.positions.include? @position
-    assert @issue.links.include? links(:stackoverflow)
+    assert @issue.links.include? @link
     @issue.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @adoption.reload }
+    assert_raises(ActiveRecord::RecordNotFound) { @link.reload }
   end
 
   test 'issue validations' do
