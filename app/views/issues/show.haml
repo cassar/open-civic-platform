@@ -2,7 +2,7 @@
 %h1= yield :title
 - if @thumbnails.any? || user_signed_in?
   %p
-    %strong Links
+    %strong Context
   .tile-container
     - @thumbnails.each do |thumbnail|
       = render 'layouts/tile', url: thumbnail.url.to_s, title: thumbnail.title
