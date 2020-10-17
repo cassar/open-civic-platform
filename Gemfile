@@ -39,6 +39,8 @@ gem 'jquery-rails'
 gem 'webpacker'
 # Generating image thumbnails from a given URL
 gem 'link_thumbnailer'
+# Official AWS Ruby gem for Amazon Simple Storage Service (Amazon S3)
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
