@@ -9,17 +9,14 @@
     - if user_signed_in?
       = link_to new_issue_link_path(@issue), class: 'tile' do
         = 'Add Link'
-- if @positions.present?
-  %p
-    %strong Positions
-  .tile-container
-    - @positions.each do |position|
-      = render 'layouts/tile', url: issue_position_path(@issue, position), title: position.name
-    - if @adoption.present?   
-      = link_to new_profile_issue_position_path(@issue), class: 'tile' do
-        = 'Add Position'
-- else
-  %p This issue does not have any positions declared
+%p
+  %strong Positions
+.tile-container
+  - @positions.each do |position|
+    = render 'layouts/tile', url: issue_position_path(@issue, position), title: position.name
+  - if @adoption.present?
+    = link_to new_profile_issue_position_path(@issue), class: 'tile' do
+      = 'Add Position'
 %p
   %strong Actions
 %hr
