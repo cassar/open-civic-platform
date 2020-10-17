@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'profile', to: 'profiles#show'
 
   namespace :profile do
-    resources :issues, only: [:show, :new, :create] do
+    resources :issues, except: [:index, :destroy] do
       resources :positions, only: [:show, :new, :create] do
         resources :supports, only: :create
       end

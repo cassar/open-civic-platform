@@ -21,12 +21,15 @@
   %strong Actions
 %hr
 .tile-container
-  - if @adoption.present?
-    = link_to profile_issue_path(@issue), class: 'tile' do
-      = 'Preferences'
-    = link_to new_profile_issue_position_path(@issue), class: 'tile' do
-      = 'Add Position'
-  - else
-    = link_to profile_issues_path(issue: {name: @issue.name}), method: :post, class: 'tile' do
-      = 'Adopt Issue'
+  - if user_signed_in?
+    = link_to edit_profile_issue_path(@issue), class: 'tile' do
+      = 'Edit Issue'
+    - if @adoption.present?
+      = link_to profile_issue_path(@issue), class: 'tile' do
+        = 'Preferences'
+      = link_to new_profile_issue_position_path(@issue), class: 'tile' do
+        = 'Add Position'
+    - else
+      = link_to profile_issues_path(issue: {name: @issue.name}), method: :post, class: 'tile' do
+        = 'Adopt Issue'
   = render partial: 'layouts/authentication_tiles'

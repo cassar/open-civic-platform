@@ -2,6 +2,7 @@ require 'test_helper'
 
 class Profile::IssuesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @issue = issues(:one)
     sign_in users(:one)
   end
 
@@ -49,5 +50,23 @@ class Profile::IssuesControllerTest < ActionDispatch::IntegrationTest
       end
     end
     assert_response :success
+  end
+
+  test 'should get edit' do
+    get edit_profile_issue_path(@issue)
+    assert_response :success
+  end
+
+  test 'should patch update success' do
+    patch profile_issue_path(@issue, params: { issue: { name: 'MyString2' }})
+    @issue.reload
+    @issue.name == 'MyString2'
+  end
+
+  test 'should patch update fail' do
+    patch profile_issue_path(@issue, params: { issue: { name: nil }})
+    old_name = @issue.name
+    @issue.reload
+    @issue.name == old_name
   end
 end

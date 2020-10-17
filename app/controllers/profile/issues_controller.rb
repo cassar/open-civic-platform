@@ -18,6 +18,20 @@ class Profile::IssuesController < ApplicationController
     handle_create
   end
 
+  def edit
+    @issue = Issue.find params[:id]
+  end
+
+  def update
+    @issue = Issue.find params[:id]
+    if @issue.update issue_params
+      redirect_to issue_path(@issue), notice: 'Issue successfully updated'
+    else
+      flash[:alert] = @issue.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
+
   private
 
   def issue_params
