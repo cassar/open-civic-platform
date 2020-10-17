@@ -6,13 +6,6 @@ class Issue < ApplicationRecord
   has_many :groups, through: :submissions
   has_many :links, as: :linkable, dependent: :destroy
 
-  validates :name, :identifier, uniqueness: true, presence: true
+  validates :name, uniqueness: true, presence: true
 
-  before_validation :generate_identifier
-
-  private
-
-  def generate_identifier
-    self.identifier = name&.gsub(' ', '_')&.gsub(/\W/, '')&.downcase
-  end
 end
