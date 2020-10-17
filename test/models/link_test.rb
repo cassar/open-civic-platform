@@ -12,10 +12,19 @@ class LinkTest < ActiveSupport::TestCase
     ).persisted?
   end
 
-  test 'should accept good links' do
+  test 'should accept good links and save title' do
+    url = 'http://stackoverflow.com'
+    title = 'stackoverflow'
+
+    LinkThumbnailer.expects(:generate)
+      .with(url)
+      .returns(Struct.new(:title).new(title))
+
     assert Link.create(
-      url: 'http://stackoverflow.com',
+      url: url,
       linkable: issues(:one)
     ).persisted?
+
+    assert Link.last.title == title
   end
 end

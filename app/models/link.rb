@@ -6,7 +6,7 @@ class Link < ApplicationRecord
   private
 
   def url_must_be_valid
-    LinkThumbnailer.generate(url)
+    self.title = LinkThumbnailer.generate(url).title
   rescue LinkThumbnailer::Exceptions => e
     errors.add(:url, e.message)
   end
