@@ -15,21 +15,21 @@
   .tile-container
     - @positions.each do |position|
       = render 'layouts/tile', url: issue_position_path(@issue, position), title: position.name
+    - if @adoption.present?   
+      = link_to new_profile_issue_position_path(@issue), class: 'tile' do
+        = 'Add Position'
 - else
   %p This issue does not have any positions declared
 %p
   %strong Actions
 %hr
 .tile-container
-  - if user_signed_in?
+  - if @adoption.present?
     = link_to edit_profile_issue_path(@issue), class: 'tile' do
       = 'Edit Issue'
-    - if @adoption.present?
-      = link_to profile_issue_path(@issue), class: 'tile' do
-        = 'Preferences'
-      = link_to new_profile_issue_position_path(@issue), class: 'tile' do
-        = 'Add Position'
-    - else
-      = link_to profile_issues_path(issue: {name: @issue.name}), method: :post, class: 'tile' do
-        = 'Adopt Issue'
+    = link_to profile_issue_path(@issue), class: 'tile' do
+      = 'Preferences'
+  - else
+    = link_to profile_issues_path(issue: {name: @issue.name}), method: :post, class: 'tile' do
+      = 'Adopt Issue'
   = render partial: 'layouts/authentication_tiles'
