@@ -68,6 +68,7 @@ group :test do
   gem 'selenium-webdriver'
   # Keep your Selenium WebDrivers updated automatically
   gem 'webdrivers', '~> 3.0'
+  gem 'mocha'
 end
 
 # Extras
