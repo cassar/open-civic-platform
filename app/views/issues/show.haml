@@ -1,11 +1,11 @@
 - content_for :title, @issue.name
 %h1= yield :title
-- if @thumbnails.any? || user_signed_in?
+- if @links.any? || user_signed_in?
   %p
     %strong Context
   .tile-container
-    - @thumbnails.each do |thumbnail|
-      = render 'layouts/tile', url: thumbnail.url.to_s, title: thumbnail.title
+    - @links.each do |link|
+      = render 'layouts/tile', url: link.url, title: link.title
     - if user_signed_in?
       = link_to new_issue_link_path(@issue), class: 'tile' do
         = 'Add Link'

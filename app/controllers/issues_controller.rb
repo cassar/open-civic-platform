@@ -6,7 +6,7 @@ class IssuesController < ApplicationController
   def show
     @issue = Issue.find_by_id params[:id]
     @positions = @issue.positions
-    @thumbnails = @issue.links.map { |link| LinkThumbnailer.generate(link.url) }
+    @links = @issue.links
     return unless user_signed_in?
 
     @adoption = current_user.adoptions.find_by issue: @issue
