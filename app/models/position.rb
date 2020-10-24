@@ -7,13 +7,5 @@ class Position < ApplicationRecord
     joins(:adoptions).where(adoptions: {issue: issue}).distinct
   }
 
-  validates :name, :identifier, uniqueness: true, presence: true
-
-  before_validation :generate_identifier
-
-  private
-
-  def generate_identifier
-    self.identifier = name&.gsub(' ', '_')&.gsub(/\W/, '')&.downcase
-  end
+  validates :name, uniqueness: true, presence: true
 end
