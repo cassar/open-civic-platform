@@ -1,0 +1,6 @@
+.tile-container
+  - links.each do |link|
+    = render 'layouts/tile', url: link.url, title: link.title
+  - if user_signed_in?
+    = link_to path_to_new, class: 'tile' do
+      = 'Add Link'

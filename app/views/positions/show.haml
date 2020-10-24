@@ -1,21 +1,27 @@
 - content_for :title, @position.name
 %h1= yield :title
-%p= @position.outline
 %p
-  Positon on Issue:
-  %strong
-    #{@issue.name}
+  Position on Issue:
+  %strong= @issue.name
 %p
   Support:
   %strong
     - if @support.present?
       You Support this Position
     - else
-      You don't Support this Position
+      You do not Support this Position
+- if @position.outline.present?
+  = render 'layouts/article', text: @position.outline
+= render 'layouts/links', path_to_new: new_issue_position_link_path(@issue, @position), links: @position.links
 %p
   %strong Actions
 %hr
 .tile-container
+  - if @support.present?
+    = link_to profile_issue_position_support_path(@issue, @position, @support), method: :delete, class: 'tile' do
+      = 'Remove Support'
+    = link_to edit_profile_issue_position_path(@issue, @position), class: 'tile' do
+      = 'Edit Position'
   - unless @support.present?
     = link_to profile_issue_position_supports_path(@issue, @position), method: :post, class: 'tile' do
       = 'Support Position'

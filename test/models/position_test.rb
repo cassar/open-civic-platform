@@ -7,14 +7,17 @@ class PositionTest < ActiveSupport::TestCase
     @support = Support.first
     @adoption = adoptions(:one)
     @profile = profiles(:one)
+    @link = links(:open_civic)
   end
 
   test 'associations' do
     assert @position.supports.include? @support
     assert @position.adoptions.include? @adoption
     assert @position.supporting_profiles.include? @profile
+    assert @position.links.include? @link
     @position.destroy
     assert_raises(ActiveRecord::RecordNotFound) { @support.reload }
+    assert_raises(ActiveRecord::RecordNotFound) { @link.reload }
   end
 
   test 'scopes' do

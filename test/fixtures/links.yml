@@ -5,3 +5,9 @@ stackoverflow:
   url: http://stackoverflow.com
   linkable_id: 1
   linkable_type: Issue
+
+open_civic:
+  id: 2
+  url: https://www.open-civic.com/
+  linkable_id: 1
+  linkable_type: Position

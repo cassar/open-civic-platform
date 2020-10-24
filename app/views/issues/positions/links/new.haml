@@ -1,0 +1,10 @@
+- content_for :title, "New Link for #{@linkable.name}"
+%h1= yield :title
+%section
+  = form_for [@issue, @linkable, @link] do |f|
+    .form-group
+      = f.label :url
+      = f.url_field :url, class: 'form-control'
+    .actions.form-group
+      = f.submit nil, class: 'btn btn-primary'
+  = link_to 'Back to Position', issue_position_path(@issue, @linkable)

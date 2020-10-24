@@ -35,7 +35,7 @@ class Profile::IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:name)
+    params.require(:issue).permit(:name, :outline)
   end
 
   def handle_create

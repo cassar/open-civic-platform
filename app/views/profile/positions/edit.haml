@@ -1,0 +1,5 @@
+- content_for :title, "Edit Position #{@position.name}"
+%h1= yield :title
+%section
+  = render 'form'
+  = link_to 'Back to Position', issue_position_path(@position)

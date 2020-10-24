@@ -3,12 +3,18 @@ class Profile::SupportsController < ApplicationController
 
   def create
     if support.save
-      redirect_to profile_issue_position_path(@issue, @position),
+      redirect_to issue_position_path(@issue, @position),
         notice: 'Successfully Supported Position'
     else
       redirect_to issue_path(@issue),
         alert: support.errors.full_messages.to_sentence
     end
+  end
+
+  def destroy
+    @support = Support.find params[:id]
+    @support.destroy
+    redirect_to issue_position_path(@support.issue, @support.position), notice: 'Support Removed'
   end
 
   private

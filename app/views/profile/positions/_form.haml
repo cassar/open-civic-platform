@@ -1,4 +1,4 @@
-= form_for [:profile, @issue] do |f|
+= form_for [:profile, @issue, @position] do |f|
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control'

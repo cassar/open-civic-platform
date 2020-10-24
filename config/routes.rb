@@ -9,16 +9,18 @@ Rails.application.routes.draw do
   end
 
   resources :issues, only: [:index, :show] do
-    resources :positions, only: :show
-    resources :links, only: [:new, :create, :destroy]
+    resources :positions, only: :show do
+      resources :links, only: [:new, :create, :destroy], controller: 'issues/positions/links'
+    end
+    resources :links, only: [:new, :create, :destroy], controller: 'issues/links'
   end
 
   get 'profile', to: 'profiles#show'
 
   namespace :profile do
     resources :issues, except: [:index, :destroy] do
-      resources :positions, only: [:show, :new, :create] do
-        resources :supports, only: :create
+      resources :positions, except: [:index, :destroy] do
+        resources :supports, only: [:create, :destroy]
       end
     end
     resources :preferences, only: :update

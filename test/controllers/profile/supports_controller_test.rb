@@ -26,7 +26,7 @@ class Profile::SupportsControllerTest < ActionDispatch::IntegrationTest
         post profile_issue_position_supports_path(@issue, @position)
       end
     end
-    assert_redirected_to profile_issue_position_path(@issue, @position)
+    assert_redirected_to issue_position_path(@issue, @position)
   end
 
   test 'should post create fail' do
@@ -38,5 +38,11 @@ class Profile::SupportsControllerTest < ActionDispatch::IntegrationTest
       end
     end
     assert_redirected_to issue_path(@issue)
+  end
+
+  test 'should delete destroy' do
+    assert_difference 'Support.count', -1 do
+      delete profile_issue_position_support_path(@issue, @position, supports(:one))
+    end
   end
 end

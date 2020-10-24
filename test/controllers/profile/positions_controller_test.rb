@@ -53,4 +53,27 @@ class Profile::PositionsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :success
   end
+
+  test 'should get edit' do
+    get edit_profile_issue_position_url(@issue, @position)
+    assert_response :success
+  end
+
+  test 'should patch update success' do
+    patch profile_issue_position_path(@issue, @position), params: {
+      position: { outline: 'updated'}
+    }
+    assert_redirected_to issue_position_path(@issue, @position)
+    @position.reload
+    assert @position.outline == 'updated'
+  end
+
+  test 'should patch update fail' do
+    patch profile_issue_position_path(@issue, @position), params: {
+      position: { name: nil }
+    }
+    assert_response :success
+    @position.reload
+    assert @position.name == 'MyString1'
+  end
 end
