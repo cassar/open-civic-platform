@@ -45,12 +45,22 @@ def create_supports(issues, positions)
   end
 end
 
+def paragraph
+  "#{Faker::Lorem.paragraph(sentence_count: 10)}\r\n\r\n#{Faker::Lorem.paragraph(sentence_count: 10)}"
+end
+
 issues = 100.times.map do
-  Issue.create name: "What is #{Faker::Games::Pokemon.unique.name}'s best move?"
+  Issue.create(
+    name: "What is #{Faker::Games::Pokemon.unique.name}'s best move?",
+    outline: paragraph
+  )
 end
 
 positions = 50.times.map do
-  Position.create(name: Faker::Games::Pokemon.unique.move)
+  Position.create(
+    name: Faker::Games::Pokemon.unique.move,
+    outline: paragraph
+  )
 end
 
 create_supports(issues, positions)
