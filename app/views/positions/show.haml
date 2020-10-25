@@ -12,9 +12,10 @@
       You do not Support this Position
 - if @position.outline.present?
   = render 'layouts/article', text: @position.outline
-%p
-  %strong Supporting Resources
-= render 'layouts/links', path_to_new: new_issue_position_link_path(@issue, @position), links: @position.links
+- if user_signed_in? || @links.any?
+  %p
+    %strong Supporting Resources
+  = render 'layouts/links', path_to_new: new_issue_position_link_path(@issue, @position), links: @links
 %p
   %strong Actions
 %hr
