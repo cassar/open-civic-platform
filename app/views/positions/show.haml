@@ -25,7 +25,7 @@
       = 'Remove Support'
     = link_to edit_profile_issue_position_path(@issue, @position), class: 'tile' do
       = 'Edit Position'
-  - unless @support.present?
+  - elsif user_signed_in?
     = link_to profile_issue_position_supports_path(@issue, @position), method: :post, class: 'tile' do
       = 'Support Position'
   = link_to issue_path(@issue), class: 'tile' do

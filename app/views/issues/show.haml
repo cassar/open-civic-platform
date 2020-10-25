@@ -23,7 +23,7 @@
       = 'Edit Issue'
     = link_to profile_issue_path(@issue), class: 'tile' do
       = 'Preferences'
-  - else
+  - elsif user_signed_in?
     = link_to profile_issues_path(issue: {name: @issue.name}), method: :post, class: 'tile' do
       = 'Adopt Issue'
   = render partial: 'layouts/authentication_tiles'
