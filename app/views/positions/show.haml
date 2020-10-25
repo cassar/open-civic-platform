@@ -30,4 +30,6 @@
       = 'Support Position'
   = link_to issue_path(@issue), class: 'tile' do
     = 'Back to Issue'
+  = link_to issues_path, class: 'tile' do
+    = 'All Issues'
   = render partial: 'layouts/authentication_tiles'

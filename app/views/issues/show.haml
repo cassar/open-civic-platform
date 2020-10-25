@@ -26,4 +26,6 @@
   - elsif user_signed_in?
     = link_to profile_issues_path(issue: {name: @issue.name}), method: :post, class: 'tile' do
       = 'Adopt Issue'
+  = link_to issues_path, class: 'tile' do
+    = 'All Issues'
   = render partial: 'layouts/authentication_tiles'
