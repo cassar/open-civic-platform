@@ -12,6 +12,8 @@
       You do not Support this Position
 - if @position.outline.present?
   = render 'layouts/article', text: @position.outline
+%p
+  %strong Supporting Resources
 = render 'layouts/links', path_to_new: new_issue_position_link_path(@issue, @position), links: @position.links
 %p
   %strong Actions
