@@ -25,4 +25,9 @@ class IssueTest < ActiveSupport::TestCase
     assert_not @issue.update identifier: nil
     assert_not @issue.update identifier: issues(:two).identifier
   end
+
+  test 'scopes' do
+    assert Issue.published.include? @issue
+    assert Issue.published.exclude? issues(:two)
+  end
 end

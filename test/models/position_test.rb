@@ -22,6 +22,8 @@ class PositionTest < ActiveSupport::TestCase
 
   test 'scopes' do
     assert Position.all.where_issue(@issue).include? @position
+    assert Position.published.include? @position
+    assert Position.published.exclude? positions(:two)
   end
 
   test 'validations' do

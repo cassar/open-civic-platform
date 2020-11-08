@@ -4,6 +4,7 @@ one:
   id: 1
   name: MyString1
   identifier: mystring1
+  published: true
 
 two:
   id: 2

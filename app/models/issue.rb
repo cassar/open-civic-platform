@@ -8,4 +8,5 @@ class Issue < ApplicationRecord
 
   validates :name, uniqueness: true, presence: true
 
+  scope :published, -> { where published: true }
 end

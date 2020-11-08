@@ -5,6 +5,7 @@ one:
   name: MyString1
   outline: MyText
   identifier: mystring1
+  published: true
 
 two:
   id: 2
