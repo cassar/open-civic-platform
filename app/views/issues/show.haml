@@ -19,8 +19,6 @@
 %hr
 .tile-container
   - if @adoption.present?
-    = link_to edit_profile_issue_path(@issue), class: 'tile' do
-      = 'Edit Issue'
     = link_to profile_issue_path(@issue), class: 'tile' do
       = 'Preferences'
   - elsif user_signed_in?

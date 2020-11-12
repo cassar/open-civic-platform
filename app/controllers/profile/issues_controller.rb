@@ -25,7 +25,7 @@ class Profile::IssuesController < ApplicationController
   def update
     @issue = Issue.find params[:id]
     if @issue.update issue_params
-      redirect_to issue_path(@issue), notice: 'Issue successfully updated'
+      redirect_to profile_issue_path(@issue), notice: 'Issue successfully updated'
     else
       flash[:alert] = @issue.errors.full_messages.to_sentence
       render :edit

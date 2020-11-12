@@ -23,6 +23,8 @@
   %strong Actions
 %hr
 .tile-container
+  = link_to edit_profile_issue_path(@issue), class: 'tile' do
+    = 'Edit Issue'
   = link_to new_profile_issue_position_path(@issue), class: 'tile' do
     = 'Add Position'
   = link_to issue_path(@issue), class: 'tile' do
