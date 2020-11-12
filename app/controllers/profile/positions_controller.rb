@@ -22,7 +22,7 @@ class Profile::PositionsController < ApplicationController
     @issue = Issue.find_by_id params[:issue_id]
     @position = Position.find_by_id params[:id]
     if @position.update(position_params)
-      redirect_to issue_position_path(@issue, @position),
+      redirect_to profile_issue_position_path(@issue, @position),
         notice: 'Successfully Updated Position'
     else
       flash[:alert] = @position.errors.full_messages.to_sentence
@@ -34,7 +34,7 @@ class Profile::PositionsController < ApplicationController
     @issue = Issue.find_by_id(params[:issue_id])
     @position = Position.new(position_params)
     if @position.save
-      redirect_to issue_path(@issue),
+      redirect_to profile_issue_path(@issue),
         notice: 'Successfully Created Position'
     else
       flash[:alert] = @position.errors.full_messages.to_sentence

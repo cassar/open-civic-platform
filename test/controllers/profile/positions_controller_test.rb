@@ -38,7 +38,7 @@ class Profile::PositionsControllerTest < ActionDispatch::IntegrationTest
         }
       end
     end
-    assert_redirected_to issue_path(@issue)
+    assert_redirected_to profile_issue_path(@issue)
   end
 
   test 'should post create fail' do
@@ -63,7 +63,7 @@ class Profile::PositionsControllerTest < ActionDispatch::IntegrationTest
     patch profile_issue_position_path(@issue, @position), params: {
       position: { outline: 'updated'}
     }
-    assert_redirected_to issue_position_path(@issue, @position)
+    assert_redirected_to profile_issue_position_path(@issue, @position)
     @position.reload
     assert @position.outline == 'updated'
   end

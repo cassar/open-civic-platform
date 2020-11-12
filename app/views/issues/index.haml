@@ -9,7 +9,7 @@
       - @issues.each do |issue|
         = render 'layouts/tile', url: issue_path(issue), title: issue.name
   - else
-    %p There are no issues currently being discussed
+    %p There are no issues currently published
   %p
     %strong Actions
   %hr

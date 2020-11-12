@@ -11,4 +11,9 @@ class IssuesControllerTest < ActionDispatch::IntegrationTest
     get issue_url(issues(:one))
     assert_response :success
   end
+
+  test 'check_published!' do
+    get issue_path(issues(:two))
+    assert_redirected_to issues_path
+  end
 end

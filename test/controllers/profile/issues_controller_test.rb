@@ -22,7 +22,7 @@ class Profile::IssuesControllerTest < ActionDispatch::IntegrationTest
         post profile_issues_path, params: { issue: { name: 'New Issue' } }
       end
     end
-    assert_redirected_to issue_path(Issue.last)
+    assert_redirected_to profile_issue_path(Issue.last)
   end
 
   test 'should post create new adoption' do
@@ -31,7 +31,7 @@ class Profile::IssuesControllerTest < ActionDispatch::IntegrationTest
         post profile_issues_path, params: { issue: { name: 'MyString3' } }
       end
     end
-    assert_redirected_to issue_path(issues(:three))
+    assert_redirected_to profile_issue_path(issues(:three))
   end
 
   test 'should post create fail issue name' do

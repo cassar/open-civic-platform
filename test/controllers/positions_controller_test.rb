@@ -11,4 +11,9 @@ class PositionsControllerTest < ActionDispatch::IntegrationTest
     get issue_position_url(issues(:one), positions(:one))
     assert_response :success
   end
+
+  test 'redirect on unpublished position' do
+    get issue_position_url(issues(:one), positions(:two))
+    assert_redirected_to issues_path
+  end
 end
