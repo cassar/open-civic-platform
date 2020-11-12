@@ -1,6 +1,7 @@
 - content_for :title, @issue.name
 %h1= yield :title
-- if @supports.present?
+- if @issue.outline.present?
+  = render 'layouts/article', text: @issue.outline
   %p
     %strong Positions
   .tile-container
@@ -17,8 +18,8 @@
           - else
             = link_to '+', profile_preference_path(support, preference: support.up_preference), |
               method: :patch
-- else
-  %p This issue does not have any positions declared
+    = link_to new_profile_issue_position_path(@issue), class: 'tile' do
+      = 'Add Position'
 %p
   %strong Actions
 %hr
