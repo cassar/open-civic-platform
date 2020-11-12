@@ -10,8 +10,9 @@
     = render 'application/favicon'
   %body
     .flashes
-      %span.notice= notice
-      %span.alert= alert
+      - flash.each do |type, msg|
+        - next if type == 'timedout'
+        %p{class: type}= msg
     - if current_page?(root_path)
       = yield
     - else
