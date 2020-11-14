@@ -1,6 +1,7 @@
 - content_for :title, @position.name
 %h1= yield :title
-%p= @position.outline
+- if @issue.outline.present?
+  = render 'layouts/article', text: @position.outline
 %p
   Positon on Issue:
   %strong
