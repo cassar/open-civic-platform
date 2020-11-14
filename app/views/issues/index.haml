@@ -3,18 +3,7 @@
   %logo Open Civic Platform
 .container
   %p
-    %strong Issues Being Discussed
-  - if @issues.present?
-    .tile-container
-      - @issues.each do |issue|
-        = render 'layouts/tile', url: issue_path(issue), title: issue.name
-  - else
-    %p There are no issues currently published
-  %p
     %strong Actions
   %hr
   .tile-container
-    - if user_signed_in?
-      = link_to new_profile_issue_path, class: 'tile' do
-        = 'New Issue'
     = render partial: 'layouts/authentication_tiles'
