@@ -6,6 +6,6 @@ class Issues::LinksController < LinksController
   end
 
   def path_success
-    issue_path(@linkable)
+    profile_issue_path(@linkable)
   end
 end

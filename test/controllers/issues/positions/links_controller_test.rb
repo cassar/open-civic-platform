@@ -19,7 +19,7 @@ class Issues::Positions::LinksControllerTest < ActionDispatch::IntegrationTest
         link: { url: 'https://github.com/' }
       })
     end
-    assert_redirected_to issue_position_path issues(:one), positions(:one)
+    assert_redirected_to profile_issue_position_path issues(:one), positions(:one)
   end
 
   test 'should post create fail' do
@@ -37,6 +37,6 @@ class Issues::Positions::LinksControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'Link.count', -1 do
       delete issue_position_link_path(issues(:one), positions(:one), links(:open_civic))
     end
-    assert_redirected_to issue_position_path issues(:one), positions(:one)
+    assert_redirected_to profile_issue_position_path issues(:one), positions(:one)
   end
 end

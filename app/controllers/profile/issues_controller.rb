@@ -6,6 +6,7 @@ class Profile::IssuesController < ApplicationController
     @supports = current_user.supports.where_issue(@issue)
       .order(:preference)
       .preload(:position)
+    @links = @issue.links
   end
 
   def new

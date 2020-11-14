@@ -2,24 +2,27 @@
 %h1= yield :title
 - if @issue.outline.present?
   = render 'layouts/article', text: @issue.outline
-  %p
-    %strong Positions
-  .tile-container
-    - @supports.each do |support|
-      .tile
-        %strong
-          = link_to '-', profile_preference_path(support, preference: support.down_preference), |
+%p
+  %strong Background Resources
+= render 'layouts/links', path_to_new: new_issue_link_path(@issue), links: @links
+%p
+  %strong Positions
+.tile-container
+  - @supports.each do |support|
+    .tile
+      %strong
+        = link_to '-', profile_preference_path(support, preference: support.down_preference), |
+          method: :patch
+      = link_to support.position.name, profile_issue_position_path(@issue, support.position)
+      %strong
+        - if support == @supports.last
+          = link_to '+', profile_preference_path(support, preference: support.first_preference), |
             method: :patch
-        = link_to support.position.name, profile_issue_position_path(@issue, support.position)
-        %strong
-          - if support == @supports.last
-            = link_to '+', profile_preference_path(support, preference: support.first_preference), |
-              method: :patch
-          - else
-            = link_to '+', profile_preference_path(support, preference: support.up_preference), |
-              method: :patch
-    = link_to new_profile_issue_position_path(@issue), class: 'tile' do
-      = 'Add Position'
+        - else
+          = link_to '+', profile_preference_path(support, preference: support.up_preference), |
+            method: :patch
+  = link_to new_profile_issue_position_path(@issue), class: 'tile' do
+    = 'Add Position'
 %p
   %strong Actions
 %hr

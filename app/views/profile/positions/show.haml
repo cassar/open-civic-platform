@@ -3,6 +3,9 @@
 - if @issue.outline.present?
   = render 'layouts/article', text: @position.outline
 %p
+  %strong Supporting Resources
+= render 'layouts/links', path_to_new: new_issue_position_link_path(@issue, @position), links: @links
+%p
   Positon on Issue:
   %strong
     #{@issue.name}

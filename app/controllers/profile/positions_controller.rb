@@ -6,6 +6,7 @@ class Profile::PositionsController < ApplicationController
   def show
     @issue = Issue.find_by_id params[:issue_id]
     @position = Position.find_by_id params[:id]
+    @links = @position.links
   end
 
   def new

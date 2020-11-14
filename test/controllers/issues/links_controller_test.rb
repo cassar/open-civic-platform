@@ -19,7 +19,7 @@ class Issues::LinksControllerTest < ActionDispatch::IntegrationTest
         link: { url: 'https://github.com/' }
       })
     end
-    assert_redirected_to issue_path issues(:one)
+    assert_redirected_to profile_issue_path issues(:one)
   end
 
   test 'should post create fail' do
@@ -37,6 +37,6 @@ class Issues::LinksControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'Link.count', -1 do
       delete issue_link_path(issues(:one), links(:stackoverflow))
     end
-    assert_redirected_to issue_path issues(:one)
+    assert_redirected_to profile_issue_path issues(:one)
   end
 end

@@ -8,7 +8,7 @@ class Issues::Positions::LinksController < LinksController
   end
 
   def path_success
-    issue_position_path(issue, linkable)
+    profile_issue_position_path(issue, linkable)
   end
 
   def issue
