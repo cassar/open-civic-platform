@@ -11,6 +11,3 @@
 .tile-container
   = link_to profile_issue_path(@issue), class: 'tile' do
     = 'Back to Issue'
-  = link_to issue_position_path(@issue, @position), class: 'tile' do
-    = 'Public Position'
-  = render partial: 'layouts/authentication_tiles'
